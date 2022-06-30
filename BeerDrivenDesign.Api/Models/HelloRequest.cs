@@ -1,4 +1,4 @@
-﻿namespace BeerDrivenDesign.Models;
+﻿namespace BeerDrivenDesign.Api.Models;
 
 public class HelloRequest
 {

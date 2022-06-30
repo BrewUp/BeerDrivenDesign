@@ -1,7 +1,7 @@
-﻿using BeerDrivenDesign.Models;
+﻿using BeerDrivenDesign.Api.Models;
 using FluentValidation;
 
-namespace BeerDrivenDesign.Validators;
+namespace BeerDrivenDesign.Api.Validators;
 
 public class SayHelloValidator : AbstractValidator<HelloRequest>
 {

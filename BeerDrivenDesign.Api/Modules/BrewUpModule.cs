@@ -1,7 +1,7 @@
-﻿using BeerDrivenDesign.Models;
+﻿using BeerDrivenDesign.Api.Models;
 using FluentValidation;
 
-namespace BeerDrivenDesign.Modules;
+namespace BeerDrivenDesign.Api.Modules;
 
 public sealed class BrewUpModule : IModule
 {

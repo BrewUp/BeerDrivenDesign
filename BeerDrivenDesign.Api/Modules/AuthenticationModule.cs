@@ -1,7 +1,7 @@
 ﻿using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.IdentityModel.Tokens;
 
-namespace BeerDrivenDesign.Modules;
+namespace BeerDrivenDesign.Api.Modules;
 
 public class AuthenticationModule : IModule
 {

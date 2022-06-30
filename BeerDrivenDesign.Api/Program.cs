@@ -1,4 +1,4 @@
-using BeerDrivenDesign.Modules;
+using BeerDrivenDesign.Api.Modules;
 using FluentValidation.AspNetCore;
 
 var builder = WebApplication.CreateBuilder(args);

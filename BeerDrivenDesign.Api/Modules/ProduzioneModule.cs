@@ -1,4 +1,6 @@
-namespace BeerDrivenDesign.Modules;
+using BeerDrivenDesign.Modules.Produzione;
+
+namespace BeerDrivenDesign.Api.Modules;
 
 public class ProduzioneModule : IModule
 {
@@ -7,11 +9,12 @@ public class ProduzioneModule : IModule
 
     public IServiceCollection RegisterModule(WebApplicationBuilder builder)
     {
-        throw new NotImplementedException();
+        builder.Services.AddProduzione();
+        return builder.Services;
     }
 
     public IEndpointRouteBuilder MapEndpoints(IEndpointRouteBuilder endpoints)
     {
-        throw new NotImplementedException();
+        return endpoints;
     }
 }

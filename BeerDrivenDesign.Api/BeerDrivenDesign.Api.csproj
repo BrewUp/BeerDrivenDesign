@@ -23,4 +23,8 @@
 	  <Folder Include="Validators\" />
 	</ItemGroup>
 
+	<ItemGroup>
+	  <ProjectReference Include="..\BeerDrivenDesign.Modules.Produzione\BeerDrivenDesign.Modules.Produzione.csproj" />
+	</ItemGroup>
+
 </Project>

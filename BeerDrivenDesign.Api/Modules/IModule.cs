@@ -1,4 +1,4 @@
-﻿namespace BeerDrivenDesign.Modules
+﻿namespace BeerDrivenDesign.Api.Modules
 {
     public interface IModule
     {

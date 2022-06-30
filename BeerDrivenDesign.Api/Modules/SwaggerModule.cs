@@ -1,6 +1,6 @@
 ﻿using Microsoft.OpenApi.Models;
 
-namespace BeerDrivenDesign.Modules;
+namespace BeerDrivenDesign.Api.Modules;
 
 public sealed class SwaggerModule : IModule
 {
