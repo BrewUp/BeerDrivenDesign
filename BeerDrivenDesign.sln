@@ -1,0 +1,58 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.30114.105
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BeerDrivenDesign.Api", "BeerDrivenDesign.Api\BeerDrivenDesign.Api.csproj", "{43E13E7E-D66F-416C-B2D6-388259297D09}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BeerDrivenDesign.Modules.Acquisti", "BeerDrivenDesign.Modules.Acquisti\BeerDrivenDesign.Modules.Acquisti.csproj", "{49C058D5-3593-4FAE-83E1-2EBD04CA82D7}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BeerDrivenDesign.Modules.Acquisti.Tests", "BeerDrivenDesign.Modules.Acquisti.Tests\BeerDrivenDesign.Modules.Acquisti.Tests.csproj", "{FF07098B-70A1-40A4-AB1F-29F8008981F4}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BeerDrivenDesign.Modules.Commerciale", "BeerDrivenDesign.Modules.Commerciale\BeerDrivenDesign.Modules.Commerciale.csproj", "{19DAC392-B028-4F08-A812-D53395B1E8E7}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BeerDrivenDesign.Modules.Commerciale.Tests", "BeerDrivenDesign.Modules.Commerciale.Tests\BeerDrivenDesign.Modules.Commerciale.Tests.csproj", "{67781741-6B7A-44C4-9386-EA52227F48DD}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BeerDrivenDesign.Modules.Produzione", "BeerDrivenDesign.Modules.Produzione\BeerDrivenDesign.Modules.Produzione.csproj", "{9EB59E2E-F534-4F7D-8FAF-FA529A3B663B}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BeerDrivenDesign.Modules.Produzione.Tests", "BeerDrivenDesign.Modules.Produzione.Tests\BeerDrivenDesign.Modules.Produzione.Tests.csproj", "{99EF10EA-FFE1-4BC1-B1E2-7FB4363C712F}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{43E13E7E-D66F-416C-B2D6-388259297D09}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{43E13E7E-D66F-416C-B2D6-388259297D09}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{43E13E7E-D66F-416C-B2D6-388259297D09}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{43E13E7E-D66F-416C-B2D6-388259297D09}.Release|Any CPU.Build.0 = Release|Any CPU
+		{49C058D5-3593-4FAE-83E1-2EBD04CA82D7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{49C058D5-3593-4FAE-83E1-2EBD04CA82D7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{49C058D5-3593-4FAE-83E1-2EBD04CA82D7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{49C058D5-3593-4FAE-83E1-2EBD04CA82D7}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FF07098B-70A1-40A4-AB1F-29F8008981F4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FF07098B-70A1-40A4-AB1F-29F8008981F4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FF07098B-70A1-40A4-AB1F-29F8008981F4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FF07098B-70A1-40A4-AB1F-29F8008981F4}.Release|Any CPU.Build.0 = Release|Any CPU
+		{19DAC392-B028-4F08-A812-D53395B1E8E7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{19DAC392-B028-4F08-A812-D53395B1E8E7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{19DAC392-B028-4F08-A812-D53395B1E8E7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{19DAC392-B028-4F08-A812-D53395B1E8E7}.Release|Any CPU.Build.0 = Release|Any CPU
+		{67781741-6B7A-44C4-9386-EA52227F48DD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{67781741-6B7A-44C4-9386-EA52227F48DD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{67781741-6B7A-44C4-9386-EA52227F48DD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{67781741-6B7A-44C4-9386-EA52227F48DD}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9EB59E2E-F534-4F7D-8FAF-FA529A3B663B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9EB59E2E-F534-4F7D-8FAF-FA529A3B663B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9EB59E2E-F534-4F7D-8FAF-FA529A3B663B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9EB59E2E-F534-4F7D-8FAF-FA529A3B663B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{99EF10EA-FFE1-4BC1-B1E2-7FB4363C712F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{99EF10EA-FFE1-4BC1-B1E2-7FB4363C712F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{99EF10EA-FFE1-4BC1-B1E2-7FB4363C712F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{99EF10EA-FFE1-4BC1-B1E2-7FB4363C712F}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+EndGlobal
