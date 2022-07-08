@@ -2,7 +2,7 @@ using BeerDrivenDesign.Modules.Produzione.DTO;
 
 namespace BeerDrivenDesign.Modules.Produzione.Abstracts;
 
-public interface IProduzioneService
+public interface IProductionService
 {
-    IEnumerable<Order> GetOrders();
+    void Brew(BrewBeer command);
 }

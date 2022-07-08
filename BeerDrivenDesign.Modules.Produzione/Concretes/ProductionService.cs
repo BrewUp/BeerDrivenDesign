@@ -4,14 +4,15 @@ using Microsoft.Extensions.Logging;
 
 namespace BeerDrivenDesign.Modules.Produzione.Concretes;
 
-public sealed class ProduzioneService : ProduzioneBaseService, IProduzioneService
+public sealed class ProductionService : ProduzioneBaseService, IProductionService
 {
-    public ProduzioneService(ILoggerFactory loggerFactory) : base(loggerFactory)
+    public ProductionService(ILoggerFactory loggerFactory) : base(loggerFactory)
     {
     }
 
-    public IEnumerable<Order> GetOrders()
+    public void Brew(BrewBeer command)
     {
+        
         throw new NotImplementedException();
     }
 }
