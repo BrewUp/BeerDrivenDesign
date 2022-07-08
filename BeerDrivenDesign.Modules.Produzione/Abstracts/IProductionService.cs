@@ -4,5 +4,5 @@ namespace BeerDrivenDesign.Modules.Produzione.Abstracts;
 
 public interface IProductionService
 {
-    void Brew(BrewBeer command);
+    Task Brew(BrewBeer command);
 }

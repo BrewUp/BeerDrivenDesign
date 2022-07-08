@@ -10,10 +10,7 @@
         <PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="6.0.0" />
         <PackageReference Include="Microsoft.Extensions.Logging" Version="6.0.0" />
         <PackageReference Include="FluentValidation.AspNetCore" Version="11.0.3" />
-    </ItemGroup>
-
-    <ItemGroup>
-      <Compile Include="Validators\BrewBeerValidator.cs" />
+        <PackageReference Include="Muflone" Version="6.0.4" />
     </ItemGroup>
 
     <ItemGroup>

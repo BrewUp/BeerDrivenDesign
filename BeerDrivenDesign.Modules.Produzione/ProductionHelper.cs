@@ -4,15 +4,17 @@ using BeerDrivenDesign.Modules.Produzione.Validators;
 using BeerDrivenDesign.ReadModel;
 using FluentValidation.AspNetCore;
 using Microsoft.Extensions.DependencyInjection;
+using Muflone;
 
 namespace BeerDrivenDesign.Modules.Produzione;
 
-public static class ProduzioneHelper
+public static class ProductionHelper
 {
-    public static IServiceCollection AddProduzione(this IServiceCollection services)
+    public static IServiceCollection AddProduction(this IServiceCollection services)
     {
         services.AddScoped<IProductionService, ProductionService>();
         services.AddScoped<ValidationHandler>();
+        services.AddScoped<IServiceBus, InProcessServiceBus>();
         services.AddFluentValidation(options =>
             options.RegisterValidatorsFromAssemblyContaining<BrewBeerValidator>());
 

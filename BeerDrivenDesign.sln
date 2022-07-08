@@ -19,6 +19,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BeerDrivenDesign.Modules.Pr
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BeerDrivenDesign.ReadModel", "BeerDrivenDesign.ReadModel\BeerDrivenDesign.ReadModel.csproj", "{964494F2-2159-4C39-9D8A-49CA42CCBEB6}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BeerDrivenDesign.Modules.Produzione.Domain", "BeerDrivenDesign.Modules.Produzione.Domain\BeerDrivenDesign.Modules.Produzione.Domain.csproj", "{312E4696-025B-4D9A-93E3-3ADEBFF28BEB}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -60,5 +62,9 @@ Global
 		{964494F2-2159-4C39-9D8A-49CA42CCBEB6}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{964494F2-2159-4C39-9D8A-49CA42CCBEB6}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{964494F2-2159-4C39-9D8A-49CA42CCBEB6}.Release|Any CPU.Build.0 = Release|Any CPU
+		{312E4696-025B-4D9A-93E3-3ADEBFF28BEB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{312E4696-025B-4D9A-93E3-3ADEBFF28BEB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{312E4696-025B-4D9A-93E3-3ADEBFF28BEB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{312E4696-025B-4D9A-93E3-3ADEBFF28BEB}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal

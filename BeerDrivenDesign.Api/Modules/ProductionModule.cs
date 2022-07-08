@@ -15,7 +15,7 @@ public class ProductionModule : IModule
 
     public IServiceCollection RegisterModule(WebApplicationBuilder builder)
     {
-        builder.Services.AddProduzione();
+        builder.Services.AddProduction();
         return builder.Services;
     }
 
@@ -36,7 +36,7 @@ public class ProductionModule : IModule
         if (!validationHandler.IsValid)
             return Results.BadRequest(validationHandler.Errors);
 
-        productionService.Brew(body);
+        await productionService.Brew(body);
 
         return Results.Accepted();
     }
