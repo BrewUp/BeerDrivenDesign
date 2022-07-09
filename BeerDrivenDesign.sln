@@ -1,33 +1,46 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio Version 16
-VisualStudioVersion = 16.0.30114.105
+# Visual Studio Version 17
+VisualStudioVersion = 17.2.32616.157
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BeerDrivenDesign.Api", "BeerDrivenDesign.Api\BeerDrivenDesign.Api.csproj", "{43E13E7E-D66F-416C-B2D6-388259297D09}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BeerDrivenDesign.Api", "BeerDrivenDesign.Api\BeerDrivenDesign.Api.csproj", "{43E13E7E-D66F-416C-B2D6-388259297D09}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BeerDrivenDesign.Modules.Acquisti", "BeerDrivenDesign.Modules.Acquisti\BeerDrivenDesign.Modules.Acquisti.csproj", "{49C058D5-3593-4FAE-83E1-2EBD04CA82D7}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BeerDrivenDesign.Modules.Acquisti", "BeerDrivenDesign.Modules.Acquisti\BeerDrivenDesign.Modules.Acquisti.csproj", "{49C058D5-3593-4FAE-83E1-2EBD04CA82D7}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BeerDrivenDesign.Modules.Acquisti.Tests", "BeerDrivenDesign.Modules.Acquisti.Tests\BeerDrivenDesign.Modules.Acquisti.Tests.csproj", "{FF07098B-70A1-40A4-AB1F-29F8008981F4}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BeerDrivenDesign.Modules.Acquisti.Tests", "BeerDrivenDesign.Modules.Acquisti.Tests\BeerDrivenDesign.Modules.Acquisti.Tests.csproj", "{FF07098B-70A1-40A4-AB1F-29F8008981F4}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BeerDrivenDesign.Modules.Commerciale", "BeerDrivenDesign.Modules.Commerciale\BeerDrivenDesign.Modules.Commerciale.csproj", "{19DAC392-B028-4F08-A812-D53395B1E8E7}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BeerDrivenDesign.Modules.Commerciale", "BeerDrivenDesign.Modules.Commerciale\BeerDrivenDesign.Modules.Commerciale.csproj", "{19DAC392-B028-4F08-A812-D53395B1E8E7}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BeerDrivenDesign.Modules.Commerciale.Tests", "BeerDrivenDesign.Modules.Commerciale.Tests\BeerDrivenDesign.Modules.Commerciale.Tests.csproj", "{67781741-6B7A-44C4-9386-EA52227F48DD}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BeerDrivenDesign.Modules.Commerciale.Tests", "BeerDrivenDesign.Modules.Commerciale.Tests\BeerDrivenDesign.Modules.Commerciale.Tests.csproj", "{67781741-6B7A-44C4-9386-EA52227F48DD}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BeerDrivenDesign.Modules.Produzione", "BeerDrivenDesign.Modules.Produzione\BeerDrivenDesign.Modules.Produzione.csproj", "{9EB59E2E-F534-4F7D-8FAF-FA529A3B663B}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BeerDrivenDesign.Modules.Produzione", "BeerDrivenDesign.Modules.Produzione\BeerDrivenDesign.Modules.Produzione.csproj", "{9EB59E2E-F534-4F7D-8FAF-FA529A3B663B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BeerDrivenDesign.Modules.Produzione.Tests", "BeerDrivenDesign.Modules.Produzione.Tests\BeerDrivenDesign.Modules.Produzione.Tests.csproj", "{99EF10EA-FFE1-4BC1-B1E2-7FB4363C712F}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BeerDrivenDesign.Modules.Produzione.Tests", "BeerDrivenDesign.Modules.Produzione.Tests\BeerDrivenDesign.Modules.Produzione.Tests.csproj", "{99EF10EA-FFE1-4BC1-B1E2-7FB4363C712F}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BeerDrivenDesign.ReadModel", "BeerDrivenDesign.ReadModel\BeerDrivenDesign.ReadModel.csproj", "{964494F2-2159-4C39-9D8A-49CA42CCBEB6}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BeerDrivenDesign.ReadModel", "BeerDrivenDesign.ReadModel\BeerDrivenDesign.ReadModel.csproj", "{964494F2-2159-4C39-9D8A-49CA42CCBEB6}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BeerDrivenDesign.Modules.Produzione.Domain", "BeerDrivenDesign.Modules.Produzione.Domain\BeerDrivenDesign.Modules.Produzione.Domain.csproj", "{312E4696-025B-4D9A-93E3-3ADEBFF28BEB}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BeerDrivenDesign.Modules.Produzione.Domain", "BeerDrivenDesign.Modules.Produzione.Domain\BeerDrivenDesign.Modules.Produzione.Domain.csproj", "{312E4696-025B-4D9A-93E3-3ADEBFF28BEB}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "90 Presentation", "90 Presentation", "{252FAA7D-8ACF-4ACF-9392-A2E99F49F1A0}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "60 Modules", "60 Modules", "{725C5103-31FF-4E4B-B91F-0B956B7A4DEE}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Produzione", "Produzione", "{E904FFAE-E02B-4E6D-BD0D-C2BCD33DAE18}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Acquisti", "Acquisti", "{31C92972-8729-4BA8-801F-F82AF730ACE6}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Commerciale", "Commerciale", "{FABE7EBE-FD44-464C-9F83-CA688233C720}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "40 ReadModel", "40 ReadModel", "{BFCF5BFC-EC26-4C22-93C3-DB46925673C7}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{D27C5EA9-A463-4171-9502-D5B9A7658C44}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BeerDrivenDesign.Modules.Produzione.Domain.Tests", "BeerDrivenDesign.Modules.Produzione.Domain.Tests\BeerDrivenDesign.Modules.Produzione.Domain.Tests.csproj", "{7E66DA37-EB89-4685-BED6-659DE45712BB}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
 		Release|Any CPU = Release|Any CPU
-	EndGlobalSection
-	GlobalSection(SolutionProperties) = preSolution
-		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
 		{43E13E7E-D66F-416C-B2D6-388259297D09}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
@@ -66,5 +79,31 @@ Global
 		{312E4696-025B-4D9A-93E3-3ADEBFF28BEB}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{312E4696-025B-4D9A-93E3-3ADEBFF28BEB}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{312E4696-025B-4D9A-93E3-3ADEBFF28BEB}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7E66DA37-EB89-4685-BED6-659DE45712BB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7E66DA37-EB89-4685-BED6-659DE45712BB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7E66DA37-EB89-4685-BED6-659DE45712BB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7E66DA37-EB89-4685-BED6-659DE45712BB}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{43E13E7E-D66F-416C-B2D6-388259297D09} = {252FAA7D-8ACF-4ACF-9392-A2E99F49F1A0}
+		{49C058D5-3593-4FAE-83E1-2EBD04CA82D7} = {31C92972-8729-4BA8-801F-F82AF730ACE6}
+		{FF07098B-70A1-40A4-AB1F-29F8008981F4} = {31C92972-8729-4BA8-801F-F82AF730ACE6}
+		{19DAC392-B028-4F08-A812-D53395B1E8E7} = {FABE7EBE-FD44-464C-9F83-CA688233C720}
+		{67781741-6B7A-44C4-9386-EA52227F48DD} = {FABE7EBE-FD44-464C-9F83-CA688233C720}
+		{9EB59E2E-F534-4F7D-8FAF-FA529A3B663B} = {E904FFAE-E02B-4E6D-BD0D-C2BCD33DAE18}
+		{99EF10EA-FFE1-4BC1-B1E2-7FB4363C712F} = {D27C5EA9-A463-4171-9502-D5B9A7658C44}
+		{964494F2-2159-4C39-9D8A-49CA42CCBEB6} = {BFCF5BFC-EC26-4C22-93C3-DB46925673C7}
+		{312E4696-025B-4D9A-93E3-3ADEBFF28BEB} = {E904FFAE-E02B-4E6D-BD0D-C2BCD33DAE18}
+		{E904FFAE-E02B-4E6D-BD0D-C2BCD33DAE18} = {725C5103-31FF-4E4B-B91F-0B956B7A4DEE}
+		{31C92972-8729-4BA8-801F-F82AF730ACE6} = {725C5103-31FF-4E4B-B91F-0B956B7A4DEE}
+		{FABE7EBE-FD44-464C-9F83-CA688233C720} = {725C5103-31FF-4E4B-B91F-0B956B7A4DEE}
+		{D27C5EA9-A463-4171-9502-D5B9A7658C44} = {E904FFAE-E02B-4E6D-BD0D-C2BCD33DAE18}
+		{7E66DA37-EB89-4685-BED6-659DE45712BB} = {D27C5EA9-A463-4171-9502-D5B9A7658C44}
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {347AA373-5AB4-48C0-B34B-AADED3524E84}
 	EndGlobalSection
 EndGlobal
