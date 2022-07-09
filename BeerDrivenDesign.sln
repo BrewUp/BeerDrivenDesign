@@ -35,7 +35,11 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "40 ReadModel", "40 ReadMode
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{D27C5EA9-A463-4171-9502-D5B9A7658C44}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BeerDrivenDesign.Modules.Produzione.Domain.Tests", "BeerDrivenDesign.Modules.Produzione.Domain.Tests\BeerDrivenDesign.Modules.Produzione.Domain.Tests.csproj", "{7E66DA37-EB89-4685-BED6-659DE45712BB}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BeerDrivenDesign.Modules.Produzione.Domain.Tests", "BeerDrivenDesign.Modules.Produzione.Domain.Tests\BeerDrivenDesign.Modules.Produzione.Domain.Tests.csproj", "{7E66DA37-EB89-4685-BED6-659DE45712BB}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "30 Shared", "30 Shared", "{65D4789C-CD75-45B1-A822-6353A5A255F6}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BeerDrivenDesign.Api.Shared", "BeerDrivenDesign.Api.Shared\BeerDrivenDesign.Api.Shared.csproj", "{BEEB18E6-9484-4DE7-878F-54368F799F35}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -83,6 +87,10 @@ Global
 		{7E66DA37-EB89-4685-BED6-659DE45712BB}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{7E66DA37-EB89-4685-BED6-659DE45712BB}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{7E66DA37-EB89-4685-BED6-659DE45712BB}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BEEB18E6-9484-4DE7-878F-54368F799F35}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BEEB18E6-9484-4DE7-878F-54368F799F35}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BEEB18E6-9484-4DE7-878F-54368F799F35}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BEEB18E6-9484-4DE7-878F-54368F799F35}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -102,6 +110,7 @@ Global
 		{FABE7EBE-FD44-464C-9F83-CA688233C720} = {725C5103-31FF-4E4B-B91F-0B956B7A4DEE}
 		{D27C5EA9-A463-4171-9502-D5B9A7658C44} = {E904FFAE-E02B-4E6D-BD0D-C2BCD33DAE18}
 		{7E66DA37-EB89-4685-BED6-659DE45712BB} = {D27C5EA9-A463-4171-9502-D5B9A7658C44}
+		{BEEB18E6-9484-4DE7-878F-54368F799F35} = {65D4789C-CD75-45B1-A822-6353A5A255F6}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {347AA373-5AB4-48C0-B34B-AADED3524E84}

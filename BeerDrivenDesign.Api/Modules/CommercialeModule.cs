@@ -7,11 +7,11 @@ public class CommercialeModule : IModule
 
     public IServiceCollection RegisterModule(WebApplicationBuilder builder)
     {
-        throw new NotImplementedException();
+        return builder.Services;
     }
 
     public IEndpointRouteBuilder MapEndpoints(IEndpointRouteBuilder endpoints)
     {
-        throw new NotImplementedException();
+        return endpoints;
     }
 }

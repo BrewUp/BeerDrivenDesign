@@ -1,4 +1,4 @@
-namespace BeerDrivenDesign.ReadModel;
+namespace BeerDrivenDesign.Api.Shared.Concretes;
 
 public class CommonServices
 {

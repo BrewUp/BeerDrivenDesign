@@ -1,4 +1,5 @@
 using System.Linq.Expressions;
+using BeerDrivenDesign.Api.Shared.Concretes;
 using BeerDrivenDesign.ReadModel.Abstracts;
 using Microsoft.Extensions.Logging;
 using MongoDB.Driver;

@@ -1,3 +1,4 @@
+using BeerDrivenDesign.Api.Shared.Concretes;
 using BeerDrivenDesign.Modules.Produzione.Abstracts;
 using BeerDrivenDesign.Modules.Produzione.Concretes;
 using BeerDrivenDesign.Modules.Produzione.Validators;
@@ -14,7 +15,6 @@ public static class ProductionHelper
     {
         services.AddScoped<IProductionService, ProductionService>();
         services.AddScoped<ValidationHandler>();
-        services.AddScoped<IServiceBus, InProcessServiceBus>();
         services.AddFluentValidation(options =>
             options.RegisterValidatorsFromAssemblyContaining<BrewBeerValidator>());
 

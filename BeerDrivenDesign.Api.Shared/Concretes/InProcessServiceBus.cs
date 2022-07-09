@@ -4,7 +4,7 @@ using Muflone;
 using Muflone.Messages;
 using Muflone.Messages.Commands;
 
-namespace BeerDrivenDesign.ReadModel;
+namespace BeerDrivenDesign.Api.Shared.Concretes;
 
 public sealed class InProcessServiceBus : IServiceBus, IDisposable
 {

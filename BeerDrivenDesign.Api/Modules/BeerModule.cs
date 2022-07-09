@@ -1,6 +1,6 @@
-namespace BeerDrivenDesign.Api.Modules;
+﻿namespace BeerDrivenDesign.Api.Modules;
 
-public class AcquistiModule : IModule
+public class BeerModule : IModule
 {
     public bool IsEnabled => true;
     public int Order => 0;
