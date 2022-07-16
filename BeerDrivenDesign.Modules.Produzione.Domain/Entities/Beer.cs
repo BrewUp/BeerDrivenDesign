@@ -11,6 +11,8 @@ public class Beer : AggregateRoot
     private Quantity _quantity;
     private HopQuantity _hopQuantity;
 
+    private BottleHalfLitre _bottleHalfLitre;
+
     protected Beer()
     {
     }
@@ -31,4 +33,32 @@ public class Beer : AggregateRoot
     {
         return new Beer(beerId, quantity);
     }
+
+    internal void BottlingBeer(BeerId beerId, BottleHalfLitre bottleHalfLitre)
+    {
+        if (_quantity.Value - (bottleHalfLitre.Value * 0.5) >= 0)
+        {
+            //RaiseEvent(new BeerBottled(beerId, bottleHalfLitre,
+            //    new Quantity(_quantity.Value - (bottleHalfLitre.Value * 0.5))));
+            RaiseEvent(new BeerBottledV2(beerId, bottleHalfLitre,
+                new Quantity(_quantity.Value - (bottleHalfLitre.Value * 0.5)), new BeerLabel("Label")));
+        }
+
+        RaiseEvent(new ProductionExceptionHappened(beerId, "Non hai abbastanza birra!!!!"));
+    }
+
+    private void Apply(BeerBottled @event)
+    {
+        _quantity = @event.Quantity;
+        _bottleHalfLitre = @event.BottleHalfLitre;
+    }
+
+    private void Apply(BeerBottledV2 @event)
+    {
+        _quantity = @event.Quantity;
+        _bottleHalfLitre = @event.BottleHalfLitre;
+    }
+
+    private void Apply(ProductionExceptionHappened @eventExceptionHappened)
+    {}
 }

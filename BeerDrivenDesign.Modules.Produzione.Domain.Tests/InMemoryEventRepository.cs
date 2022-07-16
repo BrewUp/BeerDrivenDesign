@@ -1,7 +1,8 @@
-﻿using Muflone.Messages.Events;
+﻿using Muflone;
+using Muflone.Messages.Events;
 using Muflone.Persistence;
 
-namespace Muflone.SpecificationTests
+namespace BeerDrivenDesign.Modules.Produzione.Domain.Tests
 { /// <summary>
   /// https://github.com/luizdamim/NEventStoreExample/tree/master/NEventStoreExample.Test
   /// </summary>

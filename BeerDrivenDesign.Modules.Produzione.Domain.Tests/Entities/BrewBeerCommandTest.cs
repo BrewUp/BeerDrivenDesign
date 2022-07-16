@@ -5,7 +5,6 @@ using BeerDrivenDesign.Modules.Produzione.Events;
 using Microsoft.Extensions.Logging.Abstractions;
 using Muflone.Messages.Commands;
 using Muflone.Messages.Events;
-using Muflone.SpecificationTests;
 
 namespace BeerDrivenDesign.Modules.Produzione.Domain.Tests.Entities;
 

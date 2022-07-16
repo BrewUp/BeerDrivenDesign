@@ -3,7 +3,7 @@ using Muflone.Messages.Commands;
 using Muflone.Messages.Events;
 using Xunit.Sdk;
 
-namespace Muflone.SpecificationTests
+namespace BeerDrivenDesign.Modules.Produzione.Domain.Tests
 {
 	/// <summary>
 	///   https://github.com/luizdamim/NEventStoreExample/tree/master/NEventStoreExample.Test
