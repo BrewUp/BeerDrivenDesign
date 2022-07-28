@@ -1,14 +1,14 @@
-﻿using BeerDrivenDesign.Api.Shared.Concretes;
+﻿using BeerDrivenDesign.Api.Shared.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using Muflone;
+using Muflone.Eventstore;
 
 namespace BeerDrivenDesign.Api.Shared;
 
 public static class SharedHelper
 {
-    public static IServiceCollection AddSharedService(this IServiceCollection services)
+    public static IServiceCollection AddSharedService(this IServiceCollection services, EventStoreSettings eventStoreSettings)
     {
-        services.AddScoped<IServiceBus, InProcessServiceBus>();
+        services.AddMufloneEventStore(eventStoreSettings.ConnectionString);
 
         return services;
     }

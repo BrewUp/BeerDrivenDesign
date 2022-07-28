@@ -24,11 +24,10 @@ if (builder.Environment.IsDevelopment())
     app.UseSwagger(s =>
     {
         s.RouteTemplate = "documentation/{documentName}/documentation.json";
-        s.SerializeAsV2 = true;
     });
     app.UseSwaggerUI(s =>
     {
-        s.SwaggerEndpoint("/documentation/v1/documentation.json", "BrewUp Minimal Api Template");
+        s.SwaggerEndpoint("/documentation/v1/documentation.json", "BrewUp BeerDrivenDesign");
         s.RoutePrefix = "documentation";
     });
 }

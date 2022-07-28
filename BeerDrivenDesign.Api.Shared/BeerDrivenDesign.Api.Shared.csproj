@@ -8,11 +8,13 @@
 
 	<ItemGroup>
 		<PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="6.0.0" />
-		<PackageReference Include="Muflone" Version="6.0.4" />
+		<PackageReference Include="Muflone" Version="6.0.5" />
+		<PackageReference Include="Muflone.Eventstore" Version="6.0.2" />
 	</ItemGroup>
 
   <ItemGroup>
     <Folder Include="Abstracts\" />
+    <Folder Include="Configuration\" />
   </ItemGroup>
 
 </Project>
