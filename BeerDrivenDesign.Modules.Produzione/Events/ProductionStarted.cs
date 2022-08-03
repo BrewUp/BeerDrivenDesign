@@ -10,7 +10,8 @@ public sealed class ProductionStarted : IntegrationEvent
     public readonly Quantity Quantity;
     public readonly BatchId BatchId;
 
-    public ProductionStarted(BeerId aggregateId, ProductionStartTime productionStartTime, Quantity quantity, BatchId batchId) : base(aggregateId)
+    public ProductionStarted(BeerId aggregateId, ProductionStartTime productionStartTime,
+        Quantity quantity, BatchId batchId) : base(aggregateId)
     {
         BeerId = aggregateId;
         ProductionStartTime = productionStartTime;

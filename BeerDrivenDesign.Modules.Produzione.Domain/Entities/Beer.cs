@@ -6,10 +6,10 @@ namespace BeerDrivenDesign.Modules.Produzione.Domain.Entities;
 
 public class Beer : AggregateRoot
 {
-    private BeerId _beerId;
-    private BeerType _beerType;
-    private Quantity _quantity;
-    private HopQuantity _hopQuantity;
+    private BeerId _beerId = new (Guid.Empty);
+    private BeerType _beerType = new("");
+    private Quantity _quantity = new(0);
+    private HopQuantity _hopQuantity = new(0);
 
     private BottleHalfLitre _bottleHalfLitre;
 
@@ -38,10 +38,8 @@ public class Beer : AggregateRoot
     {
         if (_quantity.Value - (bottleHalfLitre.Value * 0.5) >= 0)
         {
-            //RaiseEvent(new BeerBottled(beerId, bottleHalfLitre,
-            //    new Quantity(_quantity.Value - (bottleHalfLitre.Value * 0.5))));
             RaiseEvent(new BeerBottledV2(beerId, bottleHalfLitre,
-                new Quantity(_quantity.Value - (bottleHalfLitre.Value * 0.5)), new BeerLabel("Label")));
+                new Quantity(_quantity.Value - bottleHalfLitre.Value * 0.5), new BeerLabel("Label")));
         }
 
         RaiseEvent(new ProductionExceptionHappened(beerId, "Non hai abbastanza birra!!!!"));
