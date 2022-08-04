@@ -11,10 +11,13 @@ public class Beer : AggregateRoot
     private BeerId _beerId = new (Guid.Empty);
     private BeerType _beerType = new("");
     private Quantity _quantityToBeProduced = new(0);
+    private Quantity _quantityProduced = new(0);
     private HopQuantity _hopQuantity = new(0);
 
     private BottleHalfLitre _bottleHalfLitre;
     private BatchId _batchId;
+    private ProductionStartTime _productionStartTime;
+    private ProductionCompleteTime _productionCompleteTime;
 
     protected Beer()
     {
@@ -60,7 +63,7 @@ public class Beer : AggregateRoot
         _bottleHalfLitre = @event.BottleHalfLitre;
     }
 
-    public static Beer StartBeerProduction(BeerId beerId, BatchId batchId, Quantity quantity)
+    public static Beer StartBeerProduction(BeerId beerId, BatchId batchId, Quantity quantity, ProductionStartTime productionStartTime)
     {
         /* - la validità del comando la controlla l'aggregato se è roba semplice, oppure un DomainService apposito
          *
@@ -74,18 +77,15 @@ public class Beer : AggregateRoot
          *
          * Nel costruttore (privato), l'aggregato solleverà l'evento di dominio che ci interessa (BeerProductionStarted).
          *
-         * L'Apply aplica l'evento, e inizializza/aggiorna le proprietà dell'aggregato.
-         *
-         * 
-         *
+         * L'Apply applica l'evento, e inizializza/aggiorna le proprietà dell'aggregato.
          */
 
-        return new Beer(beerId, batchId, quantity);
+        return new Beer(beerId, batchId, quantity, productionStartTime);
     }
 
-    private Beer(BeerId beerId, BatchId batchId, Quantity quantity)
+    private Beer(BeerId beerId, BatchId batchId, Quantity quantity, ProductionStartTime productionStartTime)
     {
-        RaiseEvent(new BeerProductionStarted(beerId, batchId, quantity));
+        RaiseEvent(new BeerProductionStarted(beerId, batchId, quantity, productionStartTime));
     }
 
     private void Apply(BeerProductionStarted @event)
@@ -94,8 +94,22 @@ public class Beer : AggregateRoot
         _beerId = @event.BeerId;
         _batchId = @event.BatchId;
         _quantityToBeProduced = @event.Quantity;
+        _productionStartTime = @event.ProductionStartTime;
     }
 
     private void Apply(ProductionExceptionHappened @eventExceptionHappened)
     { }
+
+    internal void CompleteBeerProduction(BatchId batchId, Quantity quantity, ProductionCompleteTime productionCompleteTime)
+    {
+        RaiseEvent(new BeerProductionCompleted(_beerId,  batchId, quantity, productionCompleteTime));
+    }
+    private void Apply(BeerProductionCompleted @event)
+    {
+        Id = @event.AggregateId;
+        _beerId = @event.BeerId;
+        _batchId = @event.BatchId;
+        _quantityProduced = @event.Quantity;
+        _productionCompleteTime = @event.ProductionCompleteTime;
+    }
 }

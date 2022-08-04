@@ -24,7 +24,7 @@ public class StartBeerProductionCommandHandler : CommandHandlerAsync<StartBeerPr
          * - devo andare dall'aggregato Birra_i3d_Autunno e dirgli che è partita la produzione
          * - 
          */
-        var beer = Beer.StartBeerProduction(new BeerId(command.AggregateId.Value), command.BatchId, command.Quantity);
+        var beer = Beer.StartBeerProduction(new BeerId(command.AggregateId.Value), command.BatchId, command.Quantity, command.ProductionStartTime);
 
         await Repository.SaveAsync(beer, Guid.NewGuid());
     }
