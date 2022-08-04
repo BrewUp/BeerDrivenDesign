@@ -8,10 +8,15 @@ namespace BrewUp.Shared.Messages.Commands;
 
 public abstract class MassCommand : ICommand
 {
+    [JsonPropertyName("aggregateId")]
     public DomainId AggregateId { get; set; }
+    [JsonPropertyName("messageId")]
     public Guid MessageId { get; set; }
+    [JsonPropertyName("userProperties")]
     public Dictionary<string, object> UserProperties { get; set; }
+    [JsonPropertyName("who")]
     public Account Who { get; }
+    [JsonPropertyName("when")]
     public When When { get; }
 
     [JsonConstructor]

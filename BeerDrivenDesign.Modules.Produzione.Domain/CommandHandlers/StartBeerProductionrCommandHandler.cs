@@ -1,0 +1,31 @@
+using BeerDrivenDesign.Modules.Produzione.Domain.Abstracts;
+using BeerDrivenDesign.Modules.Produzione.Domain.Entities;
+using BrewUp.Shared.Messages.Commands;
+using BrewUp.Shared.Messages.CustomTypes;
+using Microsoft.Extensions.Logging;
+using Muflone.Persistence;
+
+namespace BeerDrivenDesign.Modules.Produzione.Domain.CommandHandlers;
+
+public class StartBeerProductionCommandHandler : CommandHandlerAsync<StartBeerProductionCommand>
+{
+    public StartBeerProductionCommandHandler(IRepository repository, ILoggerFactory loggerFactory) : base(repository, loggerFactory)
+    {
+    }
+
+    public override async Task HandleAsync(StartBeerProductionCommand command, CancellationToken cancellationToken = new())
+    {
+        if (cancellationToken.IsCancellationRequested) cancellationToken.ThrowIfCancellationRequested();
+
+
+        /* Mi arriva il comando
+         * Sono quindi alla porta di ingresso del domino
+         * - devo validarlo (posso rifiutarlo)
+         * - devo andare dall'aggregato Birra_i3d_Autunno e dirgli che è partita la produzione
+         * - 
+         */
+        var beer = Beer.StartBeerProduction(new BeerId(command.AggregateId.Value), command.BatchId, command.Quantity);
+
+        await Repository.SaveAsync(beer, Guid.NewGuid());
+    }
+}

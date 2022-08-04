@@ -2,6 +2,7 @@ using BeerDrivenDesign.Modules.Produzione;
 using BeerDrivenDesign.Modules.Produzione.Abstracts;
 using BeerDrivenDesign.Modules.Produzione.Domain;
 using BeerDrivenDesign.Modules.Produzione.DTO;
+using BeerDrivenDesign.Modules.Produzione.Endpoints;
 using BeerDrivenDesign.ReadModel;
 using FluentValidation;
 
@@ -24,23 +25,8 @@ public class ProductionModule : IModule
 
     public IEndpointRouteBuilder MapEndpoints(IEndpointRouteBuilder endpoints)
     {
-        endpoints.MapPost($"{BaseEndpointUrl}/beer/brew", HandleBrewBeer);
+        endpoints.MapPost($"{BaseEndpointUrl}/beer/brew", ProductionEndpoints.HandleBrewBeer);
 
         return endpoints;
-    }
-
-    private static async Task<IResult> HandleBrewBeer(
-        IProductionService productionService,
-        IValidator<BrewBeer> validator,
-        ValidationHandler validationHandler,
-        BrewBeer body)
-    {
-        await validationHandler.ValidateAsync(validator, body);
-        if (!validationHandler.IsValid)
-            return Results.BadRequest(validationHandler.Errors);
-
-        await productionService.Brew(body);
-
-        return Results.Accepted();
     }
 }

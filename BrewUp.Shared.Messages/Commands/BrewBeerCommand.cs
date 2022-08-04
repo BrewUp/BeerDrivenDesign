@@ -5,8 +5,11 @@ namespace BrewUp.Shared.Messages.Commands;
 
 public class BrewBeerCommand : MassCommand
 {
+    [JsonPropertyName("quantity")]
     public Quantity Quantity { get; }
+    [JsonPropertyName("beerType")]
     public BeerType BeerType { get; }
+    [JsonPropertyName("hopQuantity")]
     public HopQuantity HopQuantity { get; }
 
     [JsonConstructor]

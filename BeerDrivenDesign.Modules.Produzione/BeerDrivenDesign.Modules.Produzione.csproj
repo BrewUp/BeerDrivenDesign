@@ -20,6 +20,7 @@
 
     <ItemGroup>
       <Folder Include="EventsHandlers\" />
+      <Folder Include="Endpoints\" />
     </ItemGroup>
 
 </Project>
