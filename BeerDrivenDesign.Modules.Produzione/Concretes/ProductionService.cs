@@ -1,5 +1,6 @@
 using BeerDrivenDesign.Modules.Produzione.Abstracts;
 using BeerDrivenDesign.Modules.Produzione.DTO;
+using BrewUp.Shared.Messages.Commands;
 using BrewUp.Shared.Messages.CustomTypes;
 using BrewUp.Shared.Messages.Events;
 using Microsoft.Extensions.Logging;
@@ -20,18 +21,18 @@ public sealed class ProductionService : ProductionBaseService, IProductionServic
 
     public async Task Brew(BrewBeer body)
     {
-        //var command = new BrewBeerCommand(
-        //    new BeerId(body.BeerId),
-        //    new Quantity(body.Quantity),
-        //    new BeerType(body.BeerType),
-        //    new HopQuantity(body.HopQuantity)
-        //);
+        var command = new BrewBeerCommand(
+            new BeerId(body.BeerId),
+            new Quantity(body.Quantity),
+            new BeerType(body.BeerType),
+            new HopQuantity(body.HopQuantity)
+        );
 
-        //await _serviceBus.SendAsync(command);
+        await _serviceBus.SendAsync(command);
 
-        var productionStarted = new ProductionStarted(new BeerId(Guid.NewGuid()),
-            new ProductionStartTime(DateTime.UtcNow), new Quantity(100), new BatchId("123"));
+        //var productionStarted = new ProductionStarted(new BeerId(Guid.NewGuid()),
+        //    new ProductionStartTime(DateTime.UtcNow), new Quantity(100), new BatchId("123"));
 
-        await _eventBus.PublishAsync(productionStarted);
+        //await _eventBus.PublishAsync(productionStarted);
     }
 }

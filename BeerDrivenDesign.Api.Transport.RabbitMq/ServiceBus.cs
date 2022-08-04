@@ -1,4 +1,5 @@
-﻿using BeerDrivenDesign.Api.Transport.RabbitMq.Settings;
+﻿using BeerDrivenDesign.Api.Shared.Concretes;
+using BeerDrivenDesign.Api.Transport.RabbitMq.Settings;
 using MassTransit;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
@@ -14,7 +15,7 @@ public sealed class ServiceBus : IServiceBus, IEventBus, IHostedService
     private readonly IBusControl _busControl;
     private readonly ILogger<ServiceBus> _logger;
 
-    private readonly string _queueName = string.Empty;
+    private readonly string _queueName;
 
     public ServiceBus(IBusControl busControl,
         ILogger<ServiceBus> logger,
@@ -28,6 +29,7 @@ public sealed class ServiceBus : IServiceBus, IEventBus, IHostedService
             _queueName = $"{_queueName}/";
 
         _queueName = $"{_queueName}{options.Value.ExchangeName}";
+        _queueName = "rabbitmq://localhost/i3d.exchange";
     }
 
     public async Task SendAsync<T>(T command) where T : class, ICommand
@@ -39,7 +41,7 @@ public sealed class ServiceBus : IServiceBus, IEventBus, IHostedService
         }
         catch (Exception ex)
         {
-            Console.WriteLine(ex);
+            _logger.LogError(CommonServices.GetDefaultErrorTrace(ex));
             throw;
         }
     }
