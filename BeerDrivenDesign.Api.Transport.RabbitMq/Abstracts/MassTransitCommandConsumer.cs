@@ -1,9 +1,10 @@
-﻿using Microsoft.Extensions.Logging;
+﻿using BrewUp.Shared.Messages.Commands;
+using Microsoft.Extensions.Logging;
 using Muflone.Messages.Commands;
 
 namespace BeerDrivenDesign.Api.Transport.RabbitMq.Abstracts;
 
-public abstract class MassTransitCommandConsumer<TCommand> : CommandConsumerBase<TCommand> where TCommand : Command
+public abstract class MassTransitCommandConsumer<TCommand> : CommandConsumerBase<TCommand> where TCommand : MassCommand
 {
     protected readonly IServiceProvider ServiceProvider;
     protected readonly ILogger Logger;

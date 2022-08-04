@@ -1,16 +1,15 @@
 ﻿using BrewUp.Shared.Messages.CustomTypes;
-using Muflone.Messages.Commands;
 
 namespace BrewUp.Shared.Messages.Commands;
 
-public sealed class BottlingBeerCommand : Command
+public sealed class BottlingBeerCommand : MassCommand
 {
     public readonly BeerId BeerId;
     public readonly BottleHalfLitre BottleHalfLitre;
 
-    public BottlingBeerCommand(BeerId aggregateId, BottleHalfLitre bottleHalfLitre) : base(aggregateId)
+    public BottlingBeerCommand(Guid aggregateId, BottleHalfLitre bottleHalfLitre) : base(aggregateId)
     {
-        BeerId = aggregateId;
+        BeerId = new BeerId(aggregateId);
         BottleHalfLitre = bottleHalfLitre;
     }
 }

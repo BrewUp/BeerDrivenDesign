@@ -1,4 +1,5 @@
-﻿using KellermanSoftware.CompareNetObjects;
+﻿using BrewUp.Shared.Messages.Commands;
+using KellermanSoftware.CompareNetObjects;
 using Muflone.Messages.Commands;
 using Muflone.Messages.Events;
 using Xunit.Sdk;
@@ -9,7 +10,7 @@ namespace BeerDrivenDesign.Modules.Produzione.Domain.Tests
 	///   https://github.com/luizdamim/NEventStoreExample/tree/master/NEventStoreExample.Test
 	/// </summary>
 	/// <typeparam name="TCommand"></typeparam>
-	public abstract class CommandSpecification<TCommand> where TCommand : Command
+	public abstract class CommandSpecification<TCommand> where TCommand : MassCommand
 	{
         /// <summary>
         ///   If the test expects an exception, set this in the constructor of your test

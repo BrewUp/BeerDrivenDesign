@@ -2,7 +2,6 @@ using BeerDrivenDesign.Modules.Produzione.Abstracts;
 using BeerDrivenDesign.Modules.Produzione.DTO;
 using BrewUp.Shared.Messages.Commands;
 using BrewUp.Shared.Messages.CustomTypes;
-using BrewUp.Shared.Messages.Events;
 using Microsoft.Extensions.Logging;
 using Muflone;
 
@@ -22,7 +21,7 @@ public sealed class ProductionService : ProductionBaseService, IProductionServic
     public async Task Brew(BrewBeer body)
     {
         var command = new BrewBeerCommand(
-            new BeerId(body.BeerId),
+            body.BeerId,
             new Quantity(body.Quantity),
             new BeerType(body.BeerType),
             new HopQuantity(body.HopQuantity)

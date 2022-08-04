@@ -1,4 +1,5 @@
-﻿using BeerDrivenDesign.Api.Shared.Concretes;
+﻿using System.Text.Json;
+using BeerDrivenDesign.Api.Shared.Concretes;
 using BeerDrivenDesign.Api.Transport.RabbitMq.Settings;
 using MassTransit;
 using Microsoft.Extensions.Hosting;

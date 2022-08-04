@@ -22,7 +22,7 @@ public class BrewBeerCommandTest : CommandSpecification<BrewBeerCommand>
 
     protected override BrewBeerCommand When()
     {
-        return new BrewBeerCommand(_beerId, _quantity, _beerType, _hopQuantity);
+        return new BrewBeerCommand(_beerId.Value, _quantity, _beerType, _hopQuantity);
     }
 
     protected override ICommandHandlerAsync<BrewBeerCommand> OnHandler()
