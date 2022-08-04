@@ -1,4 +1,4 @@
-﻿using BeerDrivenDesign.Modules.Produzione.Events;
+﻿using BrewUp.Shared.Messages.Events;
 using Muflone.Messages.Events;
 
 namespace BeerDrivenDesign.Modules.Produzione.EventsHandlers;

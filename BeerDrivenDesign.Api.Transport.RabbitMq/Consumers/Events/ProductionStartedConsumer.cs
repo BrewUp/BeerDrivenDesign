@@ -1,5 +1,5 @@
 ﻿using BeerDrivenDesign.Api.Transport.RabbitMq.Abstracts;
-using BeerDrivenDesign.Modules.Produzione.Events;
+using BrewUp.Shared.Messages.Events;
 using MassTransit;
 using Microsoft.Extensions.DependencyInjection;
 using Muflone.Messages.Events;

@@ -1,6 +1,6 @@
-﻿using BeerDrivenDesign.Modules.Produzione.Commands;
-using BeerDrivenDesign.Modules.Produzione.Domain.Abstracts;
+﻿using BeerDrivenDesign.Modules.Produzione.Domain.Abstracts;
 using BeerDrivenDesign.Modules.Produzione.Domain.Entities;
+using BrewUp.Shared.Messages.Commands;
 using Microsoft.Extensions.Logging;
 using Muflone.Persistence;
 

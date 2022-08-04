@@ -1,5 +1,5 @@
-﻿using BeerDrivenDesign.Modules.Produzione.Commands;
-using BeerDrivenDesign.Modules.Produzione.Domain.CommandHandlers;
+﻿using BeerDrivenDesign.Modules.Produzione.Domain.CommandHandlers;
+using BrewUp.Shared.Messages.Commands;
 using Microsoft.Extensions.DependencyInjection;
 using Muflone.Messages.Commands;
 

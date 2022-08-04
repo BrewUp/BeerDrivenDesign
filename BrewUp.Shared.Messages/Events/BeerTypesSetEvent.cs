@@ -1,7 +1,7 @@
-using BeerDrivenDesign.Modules.Produzione.CustomTypes;
+using BrewUp.Shared.Messages.CustomTypes;
 using Muflone.Messages.Events;
 
-namespace BeerDrivenDesign.Modules.Produzione.Events;
+namespace BrewUp.Shared.Messages.Events;
 
 public class BeerTypesSetEvent : DomainEvent
 {

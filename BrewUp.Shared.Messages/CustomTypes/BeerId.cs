@@ -1,6 +1,6 @@
 using Muflone.Core;
 
-namespace BeerDrivenDesign.Modules.Produzione.CustomTypes;
+namespace BrewUp.Shared.Messages.CustomTypes;
 
 public class BeerId : DomainId
 {

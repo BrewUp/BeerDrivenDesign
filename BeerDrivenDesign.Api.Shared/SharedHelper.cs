@@ -6,7 +6,7 @@ namespace BeerDrivenDesign.Api.Shared;
 
 public static class SharedHelper
 {
-    public static IServiceCollection AddSharedService(this IServiceCollection services, EventStoreSettings eventStoreSettings)
+    public static IServiceCollection AddEventStore(this IServiceCollection services, EventStoreSettings eventStoreSettings)
     {
         services.AddMufloneEventStore(eventStoreSettings.ConnectionString);
 

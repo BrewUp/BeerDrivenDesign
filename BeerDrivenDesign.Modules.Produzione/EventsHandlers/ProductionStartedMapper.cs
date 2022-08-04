@@ -1,5 +1,5 @@
 ﻿using System.Text;
-using BeerDrivenDesign.Modules.Produzione.Events;
+using BrewUp.Shared.Messages.Events;
 using Muflone.Messages;
 using Muflone.Messages.Enums;
 using Newtonsoft.Json;

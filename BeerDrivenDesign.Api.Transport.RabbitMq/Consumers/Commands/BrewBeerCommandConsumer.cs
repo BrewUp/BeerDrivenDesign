@@ -1,6 +1,6 @@
 ﻿using BeerDrivenDesign.Api.Transport.RabbitMq.Abstracts;
-using BeerDrivenDesign.Modules.Produzione.Commands;
 using BeerDrivenDesign.Modules.Produzione.Domain.CommandHandlers;
+using BrewUp.Shared.Messages.Commands;
 using MassTransit;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.DependencyInjection;

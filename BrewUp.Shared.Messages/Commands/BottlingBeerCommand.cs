@@ -1,7 +1,7 @@
-﻿using BeerDrivenDesign.Modules.Produzione.CustomTypes;
+﻿using BrewUp.Shared.Messages.CustomTypes;
 using Muflone.Messages.Commands;
 
-namespace BeerDrivenDesign.Modules.Produzione.Commands;
+namespace BrewUp.Shared.Messages.Commands;
 
 public sealed class BottlingBeerCommand : Command
 {

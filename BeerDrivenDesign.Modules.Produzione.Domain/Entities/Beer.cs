@@ -1,5 +1,5 @@
-using BeerDrivenDesign.Modules.Produzione.CustomTypes;
-using BeerDrivenDesign.Modules.Produzione.Events;
+using BrewUp.Shared.Messages.CustomTypes;
+using BrewUp.Shared.Messages.Events;
 using Muflone.Core;
 
 namespace BeerDrivenDesign.Modules.Produzione.Domain.Entities;

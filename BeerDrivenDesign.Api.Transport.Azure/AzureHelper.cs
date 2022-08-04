@@ -1,6 +1,6 @@
 ﻿using BeerDrivenDesign.Api.Transport.Azure.Consumers;
 using BeerDrivenDesign.Api.Transport.Azure.Settings;
-using BeerDrivenDesign.Modules.Produzione.Events;
+using BrewUp.Shared.Messages.Events;
 using MassTransit;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;

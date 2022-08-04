@@ -1,7 +1,7 @@
-﻿using BeerDrivenDesign.Modules.Produzione.Commands;
-using BeerDrivenDesign.Modules.Produzione.CustomTypes;
-using BeerDrivenDesign.Modules.Produzione.Domain.CommandHandlers;
-using BeerDrivenDesign.Modules.Produzione.Events;
+﻿using BeerDrivenDesign.Modules.Produzione.Domain.CommandHandlers;
+using BrewUp.Shared.Messages.Commands;
+using BrewUp.Shared.Messages.CustomTypes;
+using BrewUp.Shared.Messages.Events;
 using Microsoft.Extensions.Logging.Abstractions;
 using Muflone.Messages.Commands;
 using Muflone.Messages.Events;

@@ -35,7 +35,7 @@ public class SharedModule : IModule
             builder.Services.AddRmqTransport(rmqSettings);
         }
 
-        builder.Services.AddSharedService(builder.Configuration.GetSection("BrewUp:EventStoreSettings").Get<EventStoreSettings>());
+        builder.Services.AddEventStore(builder.Configuration.GetSection("BrewUp:EventStoreSettings").Get<EventStoreSettings>());
         builder.Services.AddMongoDb(builder.Configuration["BrewUp:MongoDbSettings:ConnectionString"]);
 
         return builder.Services;

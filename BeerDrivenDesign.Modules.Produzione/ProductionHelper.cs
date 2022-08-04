@@ -1,9 +1,9 @@
 using BeerDrivenDesign.Modules.Produzione.Abstracts;
 using BeerDrivenDesign.Modules.Produzione.Concretes;
-using BeerDrivenDesign.Modules.Produzione.Events;
 using BeerDrivenDesign.Modules.Produzione.EventsHandlers;
 using BeerDrivenDesign.Modules.Produzione.Validators;
 using BeerDrivenDesign.ReadModel;
+using BrewUp.Shared.Messages.Events;
 using FluentValidation.AspNetCore;
 using Microsoft.Extensions.DependencyInjection;
 using Muflone.Messages;

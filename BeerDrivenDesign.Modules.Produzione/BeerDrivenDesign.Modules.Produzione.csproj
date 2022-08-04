@@ -15,6 +15,7 @@
 
     <ItemGroup>
       <ProjectReference Include="..\BeerDrivenDesign.ReadModel\BeerDrivenDesign.ReadModel.csproj" />
+      <ProjectReference Include="..\BrewUp.Shared.Messages\BrewUp.Shared.Messages.csproj" />
     </ItemGroup>
 
     <ItemGroup>
