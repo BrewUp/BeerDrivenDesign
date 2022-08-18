@@ -11,7 +11,8 @@ using Muflone.Transport.Azure.Abstracts;
 using Muflone.Transport.Azure.Models;
 using Muflone.Transport.Azure;
 using Serilog;
-using BeerDrivenDesign.Modules.Produzione.Concretes;
+using Muflone.Factories;
+using BeerDrivenDesign.Modules.Produzione.Factories;
 
 namespace BeerDrivenDesign.Api.Modules;
 
@@ -31,19 +32,21 @@ public class SharedModule : IModule
         builder.Configuration.GetSection("BrewUp:MongoDbSettings").Bind(mongoDbSettings);
         builder.Services.AddMongoDb(mongoDbSettings);
 
-        builder.Services.AddScoped<IBeerService, BeerService>();
+        builder.Services.AddScoped<IDomainEventHandlerFactoryAsync, DomainEventHandlerFactoryAsync>();
+        builder.Services.AddScoped<ICommandHandlerFactoryAsync, CommandHandlerFactoryAsync>();
 
         var serviceProvider = builder.Services.BuildServiceProvider();
-        var repository = serviceProvider.GetService<IRepository>();
         var loggerFactory = serviceProvider.GetService<ILoggerFactory>();
-        var beerService = serviceProvider.GetService<IBeerService>();
+
+        var domainEventHandlerFactoryAsync = serviceProvider.GetService<IDomainEventHandlerFactoryAsync>();
+        var commandHandlerFactoryAsync = serviceProvider.GetService<ICommandHandlerFactoryAsync>();
 
         var consumers = new List<IConsumer>
         {
-            new StartBeerProductionConsumer(repository, new AzureServiceBusConfiguration(builder.Configuration["BrewUp:ServiceBusSettings:ConnectionString"], nameof(StartBeerProductionCommand)), loggerFactory),
+            new StartBeerProductionConsumer(commandHandlerFactoryAsync!, new AzureServiceBusConfiguration(builder.Configuration["BrewUp:ServiceBusSettings:ConnectionString"], nameof(StartBeerProductionCommand)), loggerFactory),
             
-            new BrewBeerCommandConsumer(repository, new AzureServiceBusConfiguration(builder.Configuration["BrewUp:ServiceBusSettings:ConnectionString"], nameof(BrewBeerCommand)), loggerFactory),
-            new BeerBrewedConsumer(beerService, new AzureServiceBusConfiguration(builder.Configuration["BrewUp:ServiceBusSettings:ConnectionString"], nameof(BeerBrewedEvent), "beerdriven-subscription"),
+            new BrewBeerCommandConsumer(commandHandlerFactoryAsync!, new AzureServiceBusConfiguration(builder.Configuration["BrewUp:ServiceBusSettings:ConnectionString"], nameof(BrewBeerCommand)), loggerFactory),
+            new BeerBrewedConsumer(domainEventHandlerFactoryAsync!, new AzureServiceBusConfiguration(builder.Configuration["BrewUp:ServiceBusSettings:ConnectionString"], nameof(BeerBrewedEvent), "beerdriven-subscription"),
                 loggerFactory)
         };
         builder.Services.AddMufloneTransportAzure(new AzureServiceBusConfiguration(builder.Configuration["BrewUp:ServiceBusSettings:ConnectionString"], ""),

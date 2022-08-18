@@ -27,7 +27,7 @@ public sealed class BeerBrewedEventHandler : IDomainEventHandlerAsync<BeerBrewed
         }
         catch (Exception ex)
         {
-            _logger.LogError(ex, $"An error occured processing event {@event.MessageId}. Message: {ex.Message}");
+            _logger.LogError(ex, $"An error occurred processing event {@event.MessageId}. Message: {ex.Message}");
             throw;
         }
     }

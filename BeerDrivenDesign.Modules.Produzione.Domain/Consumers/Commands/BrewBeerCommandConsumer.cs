@@ -1,8 +1,7 @@
-﻿using BeerDrivenDesign.Modules.Produzione.Domain.CommandHandlers;
-using BrewUp.Shared.Messages.Commands;
+﻿using BrewUp.Shared.Messages.Commands;
 using Microsoft.Extensions.Logging;
+using Muflone.Factories;
 using Muflone.Messages.Commands;
-using Muflone.Persistence;
 using Muflone.Transport.Azure.Abstracts;
 using Muflone.Transport.Azure.Consumers;
 using Muflone.Transport.Azure.Models;
@@ -13,11 +12,11 @@ public sealed class BrewBeerCommandConsumer : CommandConsumerBase<BrewBeerComman
 {
     protected override ICommandHandlerAsync<BrewBeerCommand> CommandHandlerAsync { get; }
 
-    public BrewBeerCommandConsumer(IRepository repository,
+    public BrewBeerCommandConsumer(ICommandHandlerFactoryAsync commandHandlerFactoryAsync,
         AzureServiceBusConfiguration azureServiceBusConfiguration,
         ILoggerFactory loggerFactory,
         IMessageSerializer? messageSerializer = null) : base(azureServiceBusConfiguration, loggerFactory, messageSerializer)
     {
-        CommandHandlerAsync = new BrewBeerCommandHandler(repository, loggerFactory);
+        CommandHandlerAsync = commandHandlerFactoryAsync.CreateCommandHandlerAsync<BrewBeerCommand>();
     }
 }

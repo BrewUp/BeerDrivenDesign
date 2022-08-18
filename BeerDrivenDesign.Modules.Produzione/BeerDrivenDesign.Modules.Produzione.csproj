@@ -22,7 +22,6 @@
     <ItemGroup>
       <Folder Include="EventsHandlers\" />
       <Folder Include="Endpoints\" />
-      <Folder Include="Factories\" />
     </ItemGroup>
 
 </Project>

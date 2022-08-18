@@ -14,7 +14,6 @@ public class ProductionModule : IModule
     public IServiceCollection RegisterModule(WebApplicationBuilder builder)
     {
         builder.Services.AddProduction();
-        builder.Services.AddProductionDomain(builder.Configuration["BrewUp:ServiceBusSettings:ConnectionString"]);
 
         return builder.Services;
     }
