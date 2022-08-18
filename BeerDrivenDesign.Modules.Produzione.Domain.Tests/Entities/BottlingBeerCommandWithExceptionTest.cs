@@ -23,7 +23,7 @@ public class BottlingBeerCommandWithExceptionTest : CommandSpecification<Bottlin
 
     protected override BottlingBeerCommand When()
     {
-        return new BottlingBeerCommand(_beerId.Value, _bottleHalfLitre);
+        return new BottlingBeerCommand(_beerId, _bottleHalfLitre);
     }
 
     protected override ICommandHandlerAsync<BottlingBeerCommand> OnHandler() =>

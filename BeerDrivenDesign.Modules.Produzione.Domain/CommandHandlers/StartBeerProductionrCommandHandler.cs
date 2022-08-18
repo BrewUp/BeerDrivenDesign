@@ -15,8 +15,8 @@ public class StartBeerProductionCommandHandler : CommandHandlerAsync<StartBeerPr
 
     public override async Task HandleAsync(StartBeerProductionCommand command, CancellationToken cancellationToken = new())
     {
-        if (cancellationToken.IsCancellationRequested) cancellationToken.ThrowIfCancellationRequested();
-
+        if (cancellationToken.IsCancellationRequested)
+            cancellationToken.ThrowIfCancellationRequested();
 
         /* Mi arriva il comando
          * Sono quindi alla porta di ingresso del domino

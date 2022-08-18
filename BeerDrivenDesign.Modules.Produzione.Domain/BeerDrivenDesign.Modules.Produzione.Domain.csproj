@@ -16,6 +16,7 @@
     </ItemGroup>
     
     <ItemGroup>
+      <ProjectReference Include="..\..\..\CQRS-Muflone\Muflone.Transport.Azure\src\Muflone.Transport.Azure\Muflone.Transport.Azure.csproj" />
       <ProjectReference Include="..\BeerDrivenDesign.Modules.Produzione\BeerDrivenDesign.Modules.Produzione.csproj" />
     </ItemGroup>
 

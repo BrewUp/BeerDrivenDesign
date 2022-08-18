@@ -1,16 +1,20 @@
-﻿using BeerDrivenDesign.Modules.Produzione.Domain.CommandHandlers;
+﻿using BeerDrivenDesign.Modules.Produzione.Domain.Consumers.Commands;
 using BrewUp.Shared.Messages.Commands;
 using Microsoft.Extensions.DependencyInjection;
-using Muflone.Messages.Commands;
+using Microsoft.Extensions.Logging;
+using Muflone.Persistence;
+using Muflone.Transport.Azure;
+using Muflone.Transport.Azure.Abstracts;
+using Muflone.Transport.Azure.Models;
 
 namespace BeerDrivenDesign.Modules.Produzione.Domain;
 
 public static class ProductionDomainHelper
 {
-    public static IServiceCollection AddProductionDomain(this IServiceCollection services)
+    public static IServiceCollection AddProductionDomain(this IServiceCollection services,
+        string azureServiceBusConnectionString)
     {
-        services.AddScoped<ICommandHandlerAsync<BrewBeerCommand>, BrewBeerCommandHandler>();
-        services.AddScoped<ICommandHandlerAsync<BottlingBeerCommand>, BottlingBeerCommandHandler>();
+
 
         return services;
     }

@@ -1,10 +1,6 @@
 using BeerDrivenDesign.Modules.Produzione;
-using BeerDrivenDesign.Modules.Produzione.Abstracts;
 using BeerDrivenDesign.Modules.Produzione.Domain;
-using BeerDrivenDesign.Modules.Produzione.DTO;
 using BeerDrivenDesign.Modules.Produzione.Endpoints;
-using BeerDrivenDesign.ReadModel;
-using FluentValidation;
 
 namespace BeerDrivenDesign.Api.Modules;
 
@@ -17,8 +13,8 @@ public class ProductionModule : IModule
 
     public IServiceCollection RegisterModule(WebApplicationBuilder builder)
     {
-        builder.Services.AddProduction(builder.Configuration["BrewUp:ServiceBusSettings:ConnectionString"]);
-        builder.Services.AddProductionDomain();
+        builder.Services.AddProduction();
+        builder.Services.AddProductionDomain(builder.Configuration["BrewUp:ServiceBusSettings:ConnectionString"]);
 
         return builder.Services;
     }

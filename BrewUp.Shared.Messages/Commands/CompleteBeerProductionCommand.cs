@@ -1,11 +1,12 @@
 ﻿using BrewUp.Shared.Messages.CustomTypes;
+using Muflone.Messages.Commands;
 
 namespace BrewUp.Shared.Messages.Commands;
 
-public class CompleteBeerProductionCommand : MassCommand
+public class CompleteBeerProductionCommand : Command
 {
     public CompleteBeerProductionCommand(BatchId batchId, BeerId beerId, Quantity quantity, ProductionCompleteTime productionCompleteTime)
-        : base(beerId.Value)
+        : base(beerId)
     {
         BatchId = batchId;
         BeerId = beerId;

@@ -14,6 +14,7 @@
     </ItemGroup>
 
     <ItemGroup>
+      <ProjectReference Include="..\..\..\CQRS-Muflone\Muflone.Transport.Azure\src\Muflone.Transport.Azure\Muflone.Transport.Azure.csproj" />
       <ProjectReference Include="..\BeerDrivenDesign.ReadModel\BeerDrivenDesign.ReadModel.csproj" />
       <ProjectReference Include="..\BrewUp.Shared.Messages\BrewUp.Shared.Messages.csproj" />
     </ItemGroup>
@@ -21,6 +22,7 @@
     <ItemGroup>
       <Folder Include="EventsHandlers\" />
       <Folder Include="Endpoints\" />
+      <Folder Include="Factories\" />
     </ItemGroup>
 
 </Project>
