@@ -22,4 +22,9 @@ public static class ProductionEndpoints
 
         return Results.Accepted();
     }
+
+    public static async Task<IResult> HandleGetBeers(IBeerService beerService)
+    {
+        return Results.Ok();
+    }
 }

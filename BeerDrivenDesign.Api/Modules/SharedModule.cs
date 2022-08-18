@@ -1,12 +1,10 @@
 ﻿using BeerDrivenDesign.Api.Shared;
 using BeerDrivenDesign.Api.Shared.Configuration;
-using BeerDrivenDesign.Modules.Produzione.Abstracts;
 using BeerDrivenDesign.Modules.Produzione.Consumers.DomainEvents;
 using BeerDrivenDesign.Modules.Produzione.Domain.Consumers.Commands;
 using BeerDrivenDesign.ReadModel.MongoDb;
 using BrewUp.Shared.Messages.Commands;
 using BrewUp.Shared.Messages.Events;
-using Muflone.Persistence;
 using Muflone.Transport.Azure.Abstracts;
 using Muflone.Transport.Azure.Models;
 using Muflone.Transport.Azure;
@@ -28,10 +26,7 @@ public class SharedModule : IModule
             .WriteTo.File("Logs\\BeerDriven.log")
             .CreateLogger();
 
-        var mongoDbSettings = new MongoDbSettings();
-        builder.Configuration.GetSection("BrewUp:MongoDbSettings").Bind(mongoDbSettings);
-        builder.Services.AddMongoDb(mongoDbSettings);
-
+        //TODO: Spostare in apposito Helper
         builder.Services.AddScoped<IDomainEventHandlerFactoryAsync, DomainEventHandlerFactoryAsync>();
         builder.Services.AddScoped<ICommandHandlerFactoryAsync, CommandHandlerFactoryAsync>();
 

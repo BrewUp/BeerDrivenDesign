@@ -4,6 +4,8 @@ using BeerDrivenDesign.ReadModel.Abstracts;
 using Microsoft.Extensions.Logging;
 using MongoDB.Driver;
 using MongoDB.Driver.Linq;
+using LanguageExt;
+using static LanguageExt.Prelude;
 
 namespace BeerDrivenDesign.ReadModel.MongoDb.Repositories;
 
@@ -16,6 +18,24 @@ public sealed class Persister : IPersister
     {
         _mongoDatabase = mongoDatabase;
         _logger = loggerFactory.CreateLogger(GetType());
+    }
+
+    public async Task<Either<Exception, T>> GetByIdFuncAsync<T>(string id) where T : ModelBase
+    {
+        try
+        {
+            var collection = _mongoDatabase.GetCollection<T>(GetCollectionName<T>());
+
+            var filter = Builders<T>.Filter.Eq(c => c.Id, id);
+            return await collection.CountDocumentsAsync(filter) > 0
+                ? Right((await collection.FindAsync(filter)).First())
+                : Left(new Exception($"No document found in {typeof(T).Name} with Id {id}"));
+        }
+        catch (Exception ex)
+        {
+            _logger.LogError(CommonServices.GetDefaultErrorTrace(ex));
+            return Left(ex);
+        }
     }
 
     public async Task<T> GetByIdAsync<T>(string id) where T : ModelBase

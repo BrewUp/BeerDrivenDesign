@@ -1,5 +1,4 @@
 using BeerDrivenDesign.Modules.Produzione;
-using BeerDrivenDesign.Modules.Produzione.Domain;
 using BeerDrivenDesign.Modules.Produzione.Endpoints;
 
 namespace BeerDrivenDesign.Api.Modules;
@@ -20,7 +19,8 @@ public class ProductionModule : IModule
 
     public IEndpointRouteBuilder MapEndpoints(IEndpointRouteBuilder endpoints)
     {
-        endpoints.MapPost($"{BaseEndpointUrl}/beer/brew", ProductionEndpoints.HandleBrewBeer);
+        endpoints.MapPost($"{BaseEndpointUrl}/beers/brew", ProductionEndpoints.HandleBrewBeer);
+        endpoints.MapGet($"{BaseEndpointUrl}/beers", ProductionEndpoints.HandleGetBeers);
 
         return endpoints;
     }
