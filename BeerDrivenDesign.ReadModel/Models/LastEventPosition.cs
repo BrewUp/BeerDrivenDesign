@@ -13,7 +13,7 @@ public class LastEventPosition : ModelBase
 
     public LastEventPosition(string id)
     {
-        Id = Guid.NewGuid().ToString();
+        Id = id;
         CommitPosition = -1;
         PreparePosition = -1;
     }

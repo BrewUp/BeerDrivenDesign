@@ -1,4 +1,5 @@
-﻿using BeerDrivenDesign.ReadModel.Models;
+﻿using BeerDrivenDesign.Api.Shared.Configuration;
+using BeerDrivenDesign.ReadModel.Models;
 using Microsoft.Extensions.Logging;
 using MongoDB.Bson;
 using MongoDB.Driver;
@@ -6,68 +7,68 @@ using Muflone.Eventstore.Persistence;
 
 namespace BeerDrivenDesign.ReadModel.MongoDb.Repositories
 {
-  public class EventStorePositionRepository : IEventStorePositionRepository
-  {
-    private readonly IMongoDatabase database;
-    private readonly ILogger<EventStorePositionRepository> logger;
-
-    public EventStorePositionRepository(ILogger<EventStorePositionRepository> logger, string connectionString)
+    public class EventStorePositionRepository : IEventStorePositionRepository
     {
-      this.logger = logger;
-      BsonDefaults.GuidRepresentation = GuidRepresentation.Standard;
-      var client = new MongoClient(connectionString);
-      database = client.GetDatabase("CqrsMovie_EventStore_Position"); //Best to inject a class with all parameter and not being coupled like this
-    }
+        private readonly IMongoDatabase _database;
+        private readonly ILogger<EventStorePositionRepository> _logger;
 
-    public async Task<IEventStorePosition> GetLastPosition()
-    {
-      try
-      {
-        var collection = database.GetCollection<LastEventPosition>(typeof(LastEventPosition).Name);
-        var filter = Builders<LastEventPosition>.Filter.Eq("_id", "EventStoreCommitPosition");
-        var result = await collection.CountDocumentsAsync(filter) > 0 ? (await collection.FindAsync(filter)).First() : null;
-        if (result == null)
+        public EventStorePositionRepository(ILogger<EventStorePositionRepository> logger, MongoDbSettings mongoDbSettings)
         {
-          result = new LastEventPosition("EventStoreCommitPosition");
-          await collection.InsertOneAsync(result);
+            _logger = logger;
+            BsonDefaults.GuidRepresentation = GuidRepresentation.Standard;
+            var client = new MongoClient(mongoDbSettings.ConnectionString);
+            _database = client.GetDatabase(mongoDbSettings.DatabaseName);
         }
 
-        return new EventStorePosition(result.CommitPosition, result.PreparePosition);
-      }
-      catch (Exception e)
-      {
-        logger.LogError($"EventStorePositionRepository: Error getting LastSavedPostion, Message: {e.Message}, StackTrace: {e.StackTrace}");
-        throw;
-      }
-    }
+        public async Task<IEventStorePosition> GetLastPosition()
+        {
+            try
+            {
+                var collection = _database.GetCollection<LastEventPosition>(nameof(LastEventPosition));
+                var filter = Builders<LastEventPosition>.Filter.Eq("_id", "EventStoreCommitPosition");
+                var result = await collection.CountDocumentsAsync(filter) > 0 ? (await collection.FindAsync(filter)).First() : null;
+                if (result == null)
+                {
+                    result = new LastEventPosition("EventStoreCommitPosition");
+                    await collection.InsertOneAsync(result);
+                }
 
-    public async Task Save(IEventStorePosition position)
-    {
-      try
-      {
-        var collection = database.GetCollection<LastEventPosition>(typeof(LastEventPosition).Name);
-        var filter = Builders<LastEventPosition>.Filter.Eq("_id", "EventStoreCommitPosition");
-        var entity = await collection.Find(filter).FirstOrDefaultAsync();
-        if (entity == null)
-        {
-          entity = new LastEventPosition("EventStoreCommitPosition");
-          await collection.InsertOneAsync(entity);
+                return new EventStorePosition(result.CommitPosition, result.PreparePosition);
+            }
+            catch (Exception e)
+            {
+                _logger.LogError($"EventStorePositionRepository: Error getting LastSavedPostion, Message: {e.Message}, StackTrace: {e.StackTrace}");
+                throw;
+            }
         }
-        else
+
+        public async Task Save(IEventStorePosition position)
         {
-          if (position.CommitPosition > entity.CommitPosition && position.PreparePosition > entity.PreparePosition)
-          {
-            entity.CommitPosition = position.CommitPosition;
-            entity.PreparePosition = position.PreparePosition;
-            await collection.FindOneAndReplaceAsync(filter, entity);
-          }
+            try
+            {
+                var collection = _database.GetCollection<LastEventPosition>(nameof(LastEventPosition));
+                var filter = Builders<LastEventPosition>.Filter.Eq("_id", "EventStoreCommitPosition");
+                var entity = await collection.Find(filter).FirstOrDefaultAsync();
+                if (entity == null)
+                {
+                    entity = new LastEventPosition("EventStoreCommitPosition");
+                    await collection.InsertOneAsync(entity);
+                }
+                else
+                {
+                    if (position.CommitPosition > entity.CommitPosition && position.PreparePosition > entity.PreparePosition)
+                    {
+                        entity.CommitPosition = position.CommitPosition;
+                        entity.PreparePosition = position.PreparePosition;
+                        await collection.FindOneAndReplaceAsync(filter, entity);
+                    }
+                }
+            }
+            catch (Exception e)
+            {
+                _logger.LogError($"EventStorePositionRepository: Error while updating commit position: {e.Message}, StackTrace: {e.StackTrace}");
+                throw;
+            }
         }
-      }
-      catch (Exception e)
-      {
-        logger.LogError($"EventStorePositionRepository: Error while updating commit position: {e.Message}, StackTrace: {e.StackTrace}");
-        throw;
-      }
     }
-  }
 }

@@ -10,10 +10,10 @@ namespace BeerDrivenDesign.ReadModel.MongoDb;
 
 public static class MongoDbHelper
 {
-    public static IServiceCollection AddEventstoreMongoDb(this IServiceCollection services, string connectionString)
+    public static IServiceCollection AddEventstoreMongoDb(this IServiceCollection services, MongoDbSettings mongoDbSettings)
     {
         services.AddSingleton<IEventStorePositionRepository>(x =>
-            new EventStorePositionRepository(x.GetService<ILogger<EventStorePositionRepository>>(), connectionString));
+            new EventStorePositionRepository(x.GetService<ILogger<EventStorePositionRepository>>(), mongoDbSettings));
 
         return services;
     }
