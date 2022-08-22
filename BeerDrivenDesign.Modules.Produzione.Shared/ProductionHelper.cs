@@ -13,8 +13,6 @@ public static class ProductionHelper
         services.AddFluentValidation(options =>
             options.RegisterValidatorsFromAssemblyContaining<BrewBeerValidator>());
 
-        //services.AddSingleton<IAzureQueueReferenceFactory, AzureQueueReferenceFactory>();
-
         return services;
     }
 }

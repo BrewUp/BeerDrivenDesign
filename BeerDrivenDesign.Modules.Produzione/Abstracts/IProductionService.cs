@@ -1,8 +1,8 @@
-using BeerDrivenDesign.Modules.Produzione.Shared.DTO;
+using BeerDrivenDesign.Modules.Produzione.Shared.Dtos;
 
 namespace BeerDrivenDesign.Modules.Produzione.Abstracts;
 
 public interface IProductionService
 {
-    Task Brew(BrewBeer command);
+    Task Brew(PostBrewBeer postBrewBeer);
 }

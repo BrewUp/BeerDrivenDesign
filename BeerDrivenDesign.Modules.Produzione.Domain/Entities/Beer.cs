@@ -1,7 +1,5 @@
-using System.ComponentModel;
 using BrewUp.Shared.Messages.CustomTypes;
 using BrewUp.Shared.Messages.Events;
-using Muflone;
 using Muflone.Core;
 
 namespace BeerDrivenDesign.Modules.Produzione.Domain.Entities;
@@ -23,32 +21,18 @@ public class Beer : AggregateRoot
     {
     }
 
-    private Beer(BeerId beerId, Quantity quantity)
-    {
-        RaiseEvent(new BeerBrewedEvent(beerId, quantity));
-    }
-
-    private void Apply(BeerBrewedEvent @event)
-    {
-        Id = @event.AggregateId;
-        _beerId = new BeerId(@event.AggregateId.Value);
-        _quantityToBeProduced = @event.Quantity;
-    }
-
-    internal static Beer CreateBeer(BeerId beerId, Quantity quantity)
-    {
-        return new Beer(beerId, quantity);
-    }
-
+    #region Bottling
     internal void BottlingBeer(BeerId beerId, BottleHalfLitre bottleHalfLitre)
     {
-        if (_quantityToBeProduced.Value - (bottleHalfLitre.Value * 0.5) >= 0)
+        if (_quantityProduced.Value - (bottleHalfLitre.Value * 0.5) >= 0)
         {
             RaiseEvent(new BeerBottledV2(beerId, bottleHalfLitre,
-                new Quantity(_quantityToBeProduced.Value - bottleHalfLitre.Value * 0.5), new BeerLabel("Label")));
+                new Quantity(_quantityProduced.Value - bottleHalfLitre.Value * 0.5), new BeerLabel("Label")));
         }
-
-        RaiseEvent(new ProductionExceptionHappened(beerId, "Non hai abbastanza birra!!!!"));
+        else
+        {
+            RaiseEvent(new ProductionExceptionHappened(beerId, "Non hai abbastanza birra!!!!"));
+        }
     }
 
     private void Apply(BeerBottled @event)
@@ -62,8 +46,11 @@ public class Beer : AggregateRoot
         _quantityToBeProduced = @event.Quantity;
         _bottleHalfLitre = @event.BottleHalfLitre;
     }
+    #endregion
 
-    public static Beer StartBeerProduction(BeerId beerId, BatchId batchId, Quantity quantity, ProductionStartTime productionStartTime)
+    #region StartProduction
+    public static Beer StartBeerProduction(BeerId beerId, BeerType beerType, BatchId batchId, Quantity quantity,
+        ProductionStartTime productionStartTime)
     {
         /* - la validità del comando la controlla l'aggregato se è roba semplice, oppure un DomainService apposito
          *
@@ -80,29 +67,30 @@ public class Beer : AggregateRoot
          * L'Apply applica l'evento, e inizializza/aggiorna le proprietà dell'aggregato.
          */
 
-        return new Beer(beerId, batchId, quantity, productionStartTime);
+        return new Beer(beerId, beerType, batchId, quantity, productionStartTime);
     }
 
-    private Beer(BeerId beerId, BatchId batchId, Quantity quantity, ProductionStartTime productionStartTime)
+    private Beer(BeerId beerId, BeerType beerType, BatchId batchId, Quantity quantity,
+        ProductionStartTime productionStartTime)
     {
-        RaiseEvent(new BeerProductionStarted(beerId, batchId, quantity, productionStartTime));
+        RaiseEvent(new BeerProductionStarted(beerId, beerType, batchId, quantity, productionStartTime));
     }
 
     private void Apply(BeerProductionStarted @event)
     {
         Id = @event.AggregateId;
         _beerId = @event.BeerId;
+        _beerType = @event.BeerType;
         _batchId = @event.BatchId;
         _quantityToBeProduced = @event.Quantity;
         _productionStartTime = @event.ProductionStartTime;
     }
+    #endregion
 
-    private void Apply(ProductionExceptionHappened @eventExceptionHappened)
-    { }
-
+    #region CompleteProduction
     internal void CompleteBeerProduction(BatchId batchId, Quantity quantity, ProductionCompleteTime productionCompleteTime)
     {
-        RaiseEvent(new BeerProductionCompleted(_beerId,  batchId, quantity, productionCompleteTime));
+        RaiseEvent(new BeerProductionCompleted(_beerId, batchId, quantity, productionCompleteTime));
     }
     private void Apply(BeerProductionCompleted @event)
     {
@@ -112,4 +100,10 @@ public class Beer : AggregateRoot
         _quantityProduced = @event.Quantity;
         _productionCompleteTime = @event.ProductionCompleteTime;
     }
+    #endregion
+
+    #region Exceptions
+    private void Apply(ProductionExceptionHappened @eventExceptionHappened)
+    { }
+    #endregion
 }

@@ -20,7 +20,7 @@
     </ItemGroup>
 
     <ItemGroup>
-      <Folder Include="EventsHandlers\" />
+      <Folder Include="Consumers\DomainEvents\" />
       <Folder Include="Endpoints\" />
     </ItemGroup>
 

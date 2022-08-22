@@ -14,9 +14,7 @@ using Muflone.Transport.Azure;
 using BeerDrivenDesign.Modules.Produzione.Factories;
 using BeerDrivenDesign.Modules.Produzione.EventsHandlers;
 using Muflone.Messages.Events;
-using Muflone.Messages;
-using BeerDrivenDesign.Modules.Produzione.Domain.CommandHandlers;
-using Muflone.Messages.Commands;
+using Muflone.Persistence;
 
 namespace BeerDrivenDesign.Api.Modules;
 
@@ -33,34 +31,30 @@ public class InfrastructureModule : IModule
         builder.Services.AddScoped<IDomainEventHandlerFactoryAsync, DomainEventHandlerFactoryAsync>();
         builder.Services.AddScoped<ICommandHandlerFactoryAsync, CommandHandlerFactoryAsync>();
 
-        builder.Services.AddScoped<IDomainEventHandlerAsync<BeerBrewedEvent>, BeerBrewedEventHandler>();
-        builder.Services.AddScoped<IIntegrationEventHandlerAsync<ProductionStarted>, ProductionStartedEventHandler>();
-        builder.Services.AddScoped<IMessageMapper<ProductionStarted>, ProductionStartedMapper>();
+        builder.Services
+            .AddScoped<IDomainEventHandlerAsync<BeerProductionStarted>, BeerProductionStartedEventHandler>();
+
+        builder.Services.AddEventStore(builder.Configuration.GetSection("BrewUp:EventStoreSettings").Get<EventStoreSettings>());
 
         var serviceProvider = builder.Services.BuildServiceProvider();
         var loggerFactory = serviceProvider.GetService<ILoggerFactory>();
 
         var domainEventHandlerFactoryAsync = serviceProvider.GetService<IDomainEventHandlerFactoryAsync>();
-        var commandHandlerFactoryAsync = serviceProvider.GetService<ICommandHandlerFactoryAsync>();
+        var repository = serviceProvider.GetService<IRepository>();
 
         var clientId = builder.Configuration["BrewUp:ClientId"];
         var consumers = new List<IConsumer>
         {
-            new StartBeerProductionConsumer(commandHandlerFactoryAsync!, new AzureServiceBusConfiguration(builder.Configuration["BrewUp:ServiceBusSettings:ConnectionString"], nameof(StartBeerProductionCommand), clientId), loggerFactory),
-
-            new BrewBeerCommandConsumer(commandHandlerFactoryAsync!, new AzureServiceBusConfiguration(builder.Configuration["BrewUp:ServiceBusSettings:ConnectionString"], nameof(BrewBeerCommand), clientId), loggerFactory),
-            new BeerBrewedConsumer(domainEventHandlerFactoryAsync!, new AzureServiceBusConfiguration(builder.Configuration["BrewUp:ServiceBusSettings:ConnectionString"], nameof(BeerBrewedEvent), clientId), loggerFactory)
+            new StartBeerProductionConsumer(repository!, new AzureServiceBusConfiguration(builder.Configuration["BrewUp:ServiceBusSettings:ConnectionString"], nameof(StartBeerProduction), clientId), loggerFactory),
+            new BeerProductionStartedConsumer(domainEventHandlerFactoryAsync!, new AzureServiceBusConfiguration(builder.Configuration["BrewUp:ServiceBusSettings:ConnectionString"], nameof(BeerProductionStarted), clientId), loggerFactory)
         };
         builder.Services.AddMufloneTransportAzure(
             new AzureServiceBusConfiguration(builder.Configuration["BrewUp:ServiceBusSettings:ConnectionString"], "",
                 clientId), consumers);
-
-        builder.Services.AddEventStore(builder.Configuration.GetSection("BrewUp:EventStoreSettings").Get<EventStoreSettings>());
+        
         var mongoDbSettings = new MongoDbSettings();
         builder.Configuration.GetSection("BrewUp:MongoDbSettings").Bind(mongoDbSettings);
         builder.Services.AddEventstoreMongoDb(mongoDbSettings);
-
-        builder.Services.AddScoped<ICommandHandlerAsync<BrewBeerCommand>, BrewBeerCommandHandler>();
 
         return builder.Services;
     }

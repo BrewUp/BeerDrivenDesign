@@ -1,5 +1,5 @@
 ﻿using BeerDrivenDesign.Modules.Produzione.Abstracts;
-using BeerDrivenDesign.Modules.Produzione.Shared.DTO;
+using BeerDrivenDesign.Modules.Produzione.Shared.Dtos;
 using BeerDrivenDesign.ReadModel.Abstracts;
 using BeerDrivenDesign.ReadModel.Models;
 using BrewUp.Shared.Messages.CustomTypes;
@@ -17,16 +17,17 @@ public sealed class BeerService : ProductionBaseService, IBeerService
         _persister = persister;
     }
 
-    public async Task CreateBeerAsync(BeerId beerId, Quantity quantity, string beerType, Ingredients ingredients)
+    public async Task CreateBeerAsync(BeerId beerId, Quantity quantity, BeerType beerType, BatchId batchId,
+        ProductionStartTime productionStartTime)
     {
         try
         {
-            var beer = Beer.CreateBeer(beerId, quantity, beerType, ingredients);
+            var beer = Beer.CreateBeer(beerId, quantity, beerType, batchId, productionStartTime);
             await _persister.InsertAsync(beer);
         }
         catch (Exception ex)
         {
-            Logger.LogError($"An error occured message {ex.Message}");
+            Logger.LogError($"An error occurred message {ex.Message}");
             throw;
         }
     }
@@ -44,7 +45,7 @@ public sealed class BeerService : ProductionBaseService, IBeerService
         }
         catch (Exception ex)
         {
-            Logger.LogError($"An error occured message {ex.Message}");
+            Logger.LogError($"An error occurred message {ex.Message}");
             throw;
         }
     }

@@ -1,21 +1,21 @@
 ﻿using BrewUp.Shared.Messages.CustomTypes;
-using Muflone.Messages.Events;
+using Muflone.Messages.Commands;
 
-namespace BrewUp.Shared.Messages.Events;
+namespace BrewUp.Shared.Messages.Commands;
 
-public class BeerProductionCompleted : DomainEvent
+public class CompleteBeerProduction : Command
 {
-    public readonly BeerId BeerId;
     public readonly BatchId BatchId;
+    public readonly BeerId BeerId;
     public readonly Quantity Quantity;
     public readonly ProductionCompleteTime ProductionCompleteTime;
 
-    public BeerProductionCompleted(BeerId beerId, BatchId batchId, Quantity quantity,
+    public CompleteBeerProduction(BatchId batchId, BeerId beerId, Quantity quantity,
         ProductionCompleteTime productionCompleteTime) : base(beerId)
     {
-        BeerId = beerId;
         BatchId = batchId;
-        Quantity = quantity;
+        BeerId = beerId;
         ProductionCompleteTime = productionCompleteTime;
+        Quantity = quantity;
     }
 }

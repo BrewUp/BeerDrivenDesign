@@ -1,4 +1,4 @@
-﻿namespace BeerDrivenDesign.Modules.Produzione.Shared.DTO;
+﻿namespace BeerDrivenDesign.Modules.Produzione.Shared.Dtos;
 
 public class BeerJson
 {

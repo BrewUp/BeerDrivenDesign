@@ -7,13 +7,13 @@ using Muflone.Persistence;
 
 namespace BeerDrivenDesign.Modules.Produzione.Domain.CommandHandlers;
 
-public class StartBeerProductionCommandHandler : CommandHandlerAsync<StartBeerProductionCommand>
+public class StartBeerProductionCommandHandler : CommandHandlerAsync<StartBeerProduction>
 {
     public StartBeerProductionCommandHandler(IRepository repository, ILoggerFactory loggerFactory) : base(repository, loggerFactory)
     {
     }
 
-    public override async Task HandleAsync(StartBeerProductionCommand command, CancellationToken cancellationToken = new())
+    public override async Task HandleAsync(StartBeerProduction command, CancellationToken cancellationToken = new())
     {
         if (cancellationToken.IsCancellationRequested)
             cancellationToken.ThrowIfCancellationRequested();
@@ -24,8 +24,16 @@ public class StartBeerProductionCommandHandler : CommandHandlerAsync<StartBeerPr
          * - devo andare dall'aggregato Birra_i3d_Autunno e dirgli che è partita la produzione
          * - 
          */
-        var beer = Beer.StartBeerProduction(new BeerId(command.AggregateId.Value), command.BatchId, command.Quantity, command.ProductionStartTime);
+        try
+        {
+            var beer = Beer.StartBeerProduction(new BeerId(command.AggregateId.Value), command.BeerType,
+                command.BatchId, command.Quantity, command.ProductionStartTime);
 
-        await Repository.SaveAsync(beer, Guid.NewGuid());
+            await Repository.SaveAsync(beer, Guid.NewGuid());
+        }
+        catch (Exception ex)
+        {
+            CoreException.CreateAggregateException(new BeerId(command.AggregateId.Value), ex);
+        }
     }
 }

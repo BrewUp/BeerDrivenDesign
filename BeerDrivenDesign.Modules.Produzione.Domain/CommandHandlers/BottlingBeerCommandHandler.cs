@@ -6,13 +6,13 @@ using Muflone.Persistence;
 
 namespace BeerDrivenDesign.Modules.Produzione.Domain.CommandHandlers;
 
-public sealed class BottlingBeerCommandHandler : CommandHandlerAsync<BottlingBeerCommand>
+public sealed class BottlingBeerCommandHandler : CommandHandlerAsync<BottlingBeer>
 {
     public BottlingBeerCommandHandler(IRepository repository, ILoggerFactory loggerFactory) : base(repository, loggerFactory)
     {
     }
 
-    public override async Task HandleAsync(BottlingBeerCommand command, CancellationToken cancellationToken = new())
+    public override async Task HandleAsync(BottlingBeer command, CancellationToken cancellationToken = new())
     {
         try
         {
@@ -23,8 +23,7 @@ public sealed class BottlingBeerCommandHandler : CommandHandlerAsync<BottlingBee
         }
         catch (Exception ex)
         {
-            Console.WriteLine(ex);
-            throw;
+            CoreException.CreateAggregateException(command.BeerId, ex);
         }
     }
 }

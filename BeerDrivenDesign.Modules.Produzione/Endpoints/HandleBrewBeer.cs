@@ -1,7 +1,6 @@
 ﻿using BeerDrivenDesign.Api.Shared.Concretes;
 using BeerDrivenDesign.Modules.Produzione.Abstracts;
-using BeerDrivenDesign.Modules.Produzione.Shared.DTO;
-using BeerDrivenDesign.ReadModel;
+using BeerDrivenDesign.Modules.Produzione.Shared.Dtos;
 using FluentValidation;
 using Microsoft.AspNetCore.Http;
 
@@ -11,9 +10,9 @@ public static class ProductionEndpoints
 {
     public static async Task<IResult> HandleBrewBeer(
         IProductionService productionService,
-        IValidator<BrewBeer> validator,
+        IValidator<PostBrewBeer> validator,
         ValidationHandler validationHandler,
-        BrewBeer body)
+        PostBrewBeer body)
     {
         await validationHandler.ValidateAsync(validator, body);
         if (!validationHandler.IsValid)

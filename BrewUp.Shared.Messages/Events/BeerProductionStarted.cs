@@ -5,14 +5,17 @@ namespace BrewUp.Shared.Messages.Events
 {
     public class BeerProductionStarted : DomainEvent
     {
-        public BeerId BeerId { get; }
-        public BatchId BatchId { get; }
-        public Quantity Quantity { get; }
-        public ProductionStartTime ProductionStartTime { get; }
+        public readonly BeerId BeerId;
+        public readonly BeerType BeerType;
+        public readonly BatchId BatchId;
+        public readonly Quantity Quantity;
+        public readonly ProductionStartTime ProductionStartTime;
 
-        public BeerProductionStarted(BeerId beerId, BatchId batchId, Quantity quantity, ProductionStartTime productionStartTime) : base(beerId)
+        public BeerProductionStarted(BeerId aggregateId, BeerType beerType, BatchId batchId, Quantity quantity,
+            ProductionStartTime productionStartTime) : base(aggregateId)
         {
-            BeerId = beerId;
+            BeerId = aggregateId;
+            BeerType = beerType;
             BatchId = batchId;
             Quantity = quantity;
             ProductionStartTime = productionStartTime;

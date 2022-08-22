@@ -8,26 +8,27 @@ using Muflone.Messages.Events;
 
 namespace BeerDrivenDesign.Modules.Produzione.Domain.Tests.Entities;
 
-public class CompleteBeerProductionTest : CommandSpecification<CompleteBeerProductionCommand>
+public class CompleteBeerProductionTest : CommandSpecification<CompleteBeerProduction>
 {
     private readonly BatchId _batchId = new("2022-125");
 
     private readonly BeerId _beerId = new(Guid.NewGuid());
+    private readonly BeerType _beerType = new("IPA");
 
     private readonly Quantity _quantity = new(200);
     private readonly ProductionStartTime _productionStartTime = new(DateTime.UtcNow);
     private readonly ProductionCompleteTime _productionCompleteTime = new(DateTime.UtcNow.AddDays(1));
     protected override IEnumerable<DomainEvent> Given()
     {
-        yield return new BeerProductionStarted(_beerId, _batchId, _quantity, _productionStartTime);
+        yield return new BeerProductionStarted(_beerId, _beerType, _batchId, _quantity, _productionStartTime);
     }
 
-    protected override CompleteBeerProductionCommand When()
+    protected override CompleteBeerProduction When()
     {
-        return new CompleteBeerProductionCommand(_batchId, _beerId, _quantity, _productionCompleteTime);
+        return new CompleteBeerProduction(_batchId, _beerId, _quantity, _productionCompleteTime);
     }
 
-    protected override ICommandHandlerAsync<CompleteBeerProductionCommand> OnHandler()
+    protected override ICommandHandlerAsync<CompleteBeerProduction> OnHandler()
     {
         return new CompleteBeerProductionCommandHandler(Repository, new NullLoggerFactory());
     }

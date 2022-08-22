@@ -1,4 +1,4 @@
-﻿using BeerDrivenDesign.Modules.Produzione.Shared.DTO;
+﻿using BeerDrivenDesign.Modules.Produzione.Shared.Dtos;
 using BeerDrivenDesign.ReadModel.Abstracts;
 using BrewUp.Shared.Messages.CustomTypes;
 
@@ -8,20 +8,19 @@ public class Beer : ModelBase
 {
     public string BeerType { get; private set; } = string.Empty;
     public double Quantity { get; private set; } = 0;
-    public Ingredients Ingredients { get; private set; } = new();
 
     protected Beer()
     {}
 
-    public static Beer CreateBeer(BeerId beerId, Quantity quantity, string beerType, Ingredients ingredients) =>
-        new(beerId.Value, quantity.Value, beerType, ingredients);
+    public static Beer CreateBeer(BeerId beerId, Quantity quantity, BeerType beerType, BatchId batchId,
+        ProductionStartTime productionStartTime) =>
+        new(beerId.Value, quantity.Value, beerType.Value);
 
-    private Beer(Guid beerId, double quantity, string beerType, Ingredients ingredients)
+    private Beer(Guid beerId, double quantity, string beerType)
     {
         Id = beerId.ToString();
         Quantity = quantity;
         BeerType = beerType;
-        Ingredients = ingredients;
     }
 
     public BeerJson ToJson() => new()
