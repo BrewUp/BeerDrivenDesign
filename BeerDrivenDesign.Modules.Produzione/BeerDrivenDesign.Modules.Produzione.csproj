@@ -9,12 +9,12 @@
     <ItemGroup>
         <PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="6.0.0" />
         <PackageReference Include="Microsoft.Extensions.Logging" Version="6.0.0" />
-        <PackageReference Include="FluentValidation.AspNetCore" Version="11.1.2" />
+        <PackageReference Include="FluentValidation.AspNetCore" Version="11.2.1" />
         <PackageReference Include="Muflone" Version="6.0.5" />
+        <PackageReference Include="Muflone.Transport.Azure" Version="6.0.0" />
     </ItemGroup>
 
     <ItemGroup>
-      <ProjectReference Include="..\..\..\CQRS-Muflone\Muflone.Transport.Azure\src\Muflone.Transport.Azure\Muflone.Transport.Azure.csproj" />
       <ProjectReference Include="..\BeerDrivenDesign.ReadModel\BeerDrivenDesign.ReadModel.csproj" />
       <ProjectReference Include="..\BrewUp.Shared.Messages\BrewUp.Shared.Messages.csproj" />
     </ItemGroup>

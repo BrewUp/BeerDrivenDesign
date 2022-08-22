@@ -13,10 +13,10 @@
     <ItemGroup>
         <PackageReference Include="Muflone" Version="6.0.5" />
         <PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="6.0.0" />
+        <PackageReference Include="Muflone.Transport.Azure" Version="6.0.0" />
     </ItemGroup>
     
     <ItemGroup>
-      <ProjectReference Include="..\..\..\CQRS-Muflone\Muflone.Transport.Azure\src\Muflone.Transport.Azure\Muflone.Transport.Azure.csproj" />
       <ProjectReference Include="..\BeerDrivenDesign.Modules.Produzione\BeerDrivenDesign.Modules.Produzione.csproj" />
     </ItemGroup>
 
