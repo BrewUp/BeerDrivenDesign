@@ -1,4 +1,4 @@
-using BeerDrivenDesign.Modules.Produzione.DTO;
+using BeerDrivenDesign.Modules.Produzione.Shared.DTO;
 
 namespace BeerDrivenDesign.Modules.Produzione.Abstracts;
 

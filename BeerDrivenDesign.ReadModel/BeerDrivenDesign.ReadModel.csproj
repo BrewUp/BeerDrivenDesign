@@ -7,7 +7,6 @@
     </PropertyGroup>
 
     <ItemGroup>
-        <PackageReference Include="FluentValidation" Version="11.2.0" />
         <PackageReference Include="LanguageExt.Core" Version="4.2.9" />
         <PackageReference Include="Microsoft.Extensions.Logging" Version="6.0.0" />
         <PackageReference Include="MongoDB.Driver" Version="2.17.1" />
@@ -15,6 +14,7 @@
 
     <ItemGroup>
       <ProjectReference Include="..\BeerDrivenDesign.Api.Shared\BeerDrivenDesign.Api.Shared.csproj" />
+      <ProjectReference Include="..\BeerDrivenDesign.Modules.Produzione.Shared\BeerDrivenDesign.Modules.Produzione.Shared.csproj" />
       <ProjectReference Include="..\BrewUp.Shared.Messages\BrewUp.Shared.Messages.csproj" />
     </ItemGroup>
 

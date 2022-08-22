@@ -1,4 +1,5 @@
 ﻿using BeerDrivenDesign.Modules.Produzione.Abstracts;
+using BeerDrivenDesign.Modules.Produzione.Shared.DTO;
 using BeerDrivenDesign.ReadModel.Abstracts;
 using BeerDrivenDesign.ReadModel.Models;
 using BrewUp.Shared.Messages.CustomTypes;
@@ -22,6 +23,24 @@ public sealed class BeerService : ProductionBaseService, IBeerService
         {
             var beer = Beer.CreateBeer(beerId, quantity, beerType, ingredients);
             await _persister.InsertAsync(beer);
+        }
+        catch (Exception ex)
+        {
+            Logger.LogError($"An error occured message {ex.Message}");
+            throw;
+        }
+    }
+
+    public async Task<IEnumerable<BeerJson>> GetBeersAsync()
+    {
+        try
+        {
+            var beers = await _persister.FindAsync<Beer>();
+            var beersArray = beers as Beer[] ?? beers.ToArray();
+
+            return beersArray.Any()
+                ? beersArray.Select(b => b.ToJson())
+                : Enumerable.Empty<BeerJson>();
         }
         catch (Exception ex)
         {

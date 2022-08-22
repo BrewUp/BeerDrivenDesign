@@ -49,6 +49,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "MongoDb", "MongoDb", "{D4F9
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BrewUp.Shared.Messages", "BrewUp.Shared.Messages\BrewUp.Shared.Messages.csproj", "{C385A354-832B-411E-88C2-AA7BCA43E8FD}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BeerDrivenDesign.Modules.Produzione.Shared", "BeerDrivenDesign.Modules.Produzione.Shared\BeerDrivenDesign.Modules.Produzione.Shared.csproj", "{F8B2A78F-9F6C-4157-A53F-B577BA11704D}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -107,6 +109,10 @@ Global
 		{C385A354-832B-411E-88C2-AA7BCA43E8FD}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{C385A354-832B-411E-88C2-AA7BCA43E8FD}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{C385A354-832B-411E-88C2-AA7BCA43E8FD}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F8B2A78F-9F6C-4157-A53F-B577BA11704D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F8B2A78F-9F6C-4157-A53F-B577BA11704D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F8B2A78F-9F6C-4157-A53F-B577BA11704D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F8B2A78F-9F6C-4157-A53F-B577BA11704D}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -130,6 +136,7 @@ Global
 		{6C7B46CA-F172-4E15-B871-260EBE8CDE46} = {D4F97378-EB38-4D81-923E-62DDBCEEC797}
 		{D4F97378-EB38-4D81-923E-62DDBCEEC797} = {05DC3254-C93F-45FF-8F87-62C6A3583041}
 		{C385A354-832B-411E-88C2-AA7BCA43E8FD} = {65D4789C-CD75-45B1-A822-6353A5A255F6}
+		{F8B2A78F-9F6C-4157-A53F-B577BA11704D} = {E904FFAE-E02B-4E6D-BD0D-C2BCD33DAE18}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {347AA373-5AB4-48C0-B34B-AADED3524E84}

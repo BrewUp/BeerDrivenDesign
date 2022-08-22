@@ -1,4 +1,5 @@
-﻿using BeerDrivenDesign.ReadModel.Abstracts;
+﻿using BeerDrivenDesign.Modules.Produzione.Shared.DTO;
+using BeerDrivenDesign.ReadModel.Abstracts;
 using BrewUp.Shared.Messages.CustomTypes;
 
 namespace BeerDrivenDesign.ReadModel.Models;
@@ -22,4 +23,11 @@ public class Beer : ModelBase
         BeerType = beerType;
         Ingredients = ingredients;
     }
+
+    public BeerJson ToJson() => new()
+    {
+        BeerId = Id,
+        BeerType = BeerType,
+        Quantity = Quantity
+    };
 }

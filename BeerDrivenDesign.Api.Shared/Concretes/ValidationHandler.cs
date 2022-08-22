@@ -1,12 +1,11 @@
 using FluentValidation;
 
-namespace BeerDrivenDesign.ReadModel;
+namespace BeerDrivenDesign.Api.Shared.Concretes;
 
 public class ValidationHandler
 {
     public bool IsValid { get; private set; } = true;
     public Dictionary<string, string[]> Errors { get; private set; } = new();
-
 
     public async Task ValidateAsync<T>(IValidator<T> validator, T validateMe) where T: class
     {

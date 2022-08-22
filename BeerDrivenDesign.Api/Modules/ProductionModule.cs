@@ -1,5 +1,5 @@
-using BeerDrivenDesign.Modules.Produzione;
 using BeerDrivenDesign.Modules.Produzione.Endpoints;
+using BeerDrivenDesign.Modules.Produzione.Shared;
 
 namespace BeerDrivenDesign.Api.Modules;
 

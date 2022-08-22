@@ -1,5 +1,5 @@
 using BeerDrivenDesign.Modules.Produzione.Abstracts;
-using BeerDrivenDesign.Modules.Produzione.DTO;
+using BeerDrivenDesign.Modules.Produzione.Shared.DTO;
 using BrewUp.Shared.Messages.Commands;
 using BrewUp.Shared.Messages.CustomTypes;
 using Microsoft.Extensions.Logging;

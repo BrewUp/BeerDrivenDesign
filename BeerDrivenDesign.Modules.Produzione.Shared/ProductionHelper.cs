@@ -1,11 +1,9 @@
-using BeerDrivenDesign.Modules.Produzione.Factories;
-using BeerDrivenDesign.Modules.Produzione.Validators;
-using BeerDrivenDesign.ReadModel;
+using BeerDrivenDesign.Api.Shared.Concretes;
+using BeerDrivenDesign.Modules.Produzione.Shared.Validators;
 using FluentValidation.AspNetCore;
 using Microsoft.Extensions.DependencyInjection;
-using Muflone.Transport.Azure.Factories;
 
-namespace BeerDrivenDesign.Modules.Produzione;
+namespace BeerDrivenDesign.Modules.Produzione.Shared;
 
 public static class ProductionHelper
 {
@@ -15,7 +13,7 @@ public static class ProductionHelper
         services.AddFluentValidation(options =>
             options.RegisterValidatorsFromAssemblyContaining<BrewBeerValidator>());
 
-        services.AddSingleton<IAzureQueueReferenceFactory, AzureQueueReferenceFactory>();
+        //services.AddSingleton<IAzureQueueReferenceFactory, AzureQueueReferenceFactory>();
 
         return services;
     }
