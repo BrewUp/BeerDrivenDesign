@@ -16,6 +16,8 @@ public class Beer : ModelBase
         ProductionStartTime productionStartTime) =>
         new(beerId.Value, beerType.Value);
 
+    public void UpdateQuantity(Quantity quantity) => Quantity = quantity.Value;
+
     private Beer(Guid beerId, string beerType)
     {
         Id = beerId.ToString();

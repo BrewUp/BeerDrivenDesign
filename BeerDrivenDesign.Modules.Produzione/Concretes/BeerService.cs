@@ -29,6 +29,29 @@ public sealed class BeerService : ProductionBaseService, IBeerService
         }
     }
 
+    public async Task UpdateBeerQuantityAsync(BeerId beerId, Quantity quantity)
+    {
+        try
+        {
+            var beer = await Persister.GetByIdAsync<Beer>(beerId.ToString());
+            if (string.IsNullOrEmpty(beer.Id))
+                return;
+
+            beer.UpdateQuantity(quantity);
+            var propertiesToUpdate = new Dictionary<string, object>
+            {
+                { "Quantity", beer.Quantity }
+            };
+
+            await Persister.UpdateOneAsync<Beer>(beer.Id, propertiesToUpdate);
+        }
+        catch (Exception ex)
+        {
+            Logger.LogError($"An error occurred message {ex.Message}");
+            throw;
+        }
+    }
+
     public async Task<IEnumerable<BeerJson>> GetBeersAsync()
     {
         try
