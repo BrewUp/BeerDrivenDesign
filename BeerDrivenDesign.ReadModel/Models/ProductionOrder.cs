@@ -54,6 +54,9 @@ public class ProductionOrder : ModelBase
         BeerId = BeerId,
         BeerType = BeerType,
 
+        QuantityToProduce = QuantityToProduce,
+        QuantityProduced = QuantityProduced,
+
         ProductionStartTime = ProductionStartTime,
         ProductionCompleteTime = ProductionCompleteTime,
 
