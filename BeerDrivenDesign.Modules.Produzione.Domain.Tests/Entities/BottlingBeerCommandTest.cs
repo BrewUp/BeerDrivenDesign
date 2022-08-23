@@ -11,7 +11,9 @@ namespace BeerDrivenDesign.Modules.Produzione.Domain.Tests.Entities;
 public class BottlingBeerCommandTest : CommandSpecification<BottlingBeer>
 {
     private readonly BeerId _beerId = new(Guid.NewGuid());
-    private readonly BatchId _batchId = new("1234");
+    
+    private readonly BatchNumber _batchNumber = new("1234");
+    
     private readonly BottleHalfLitre _bottleHalfLitre = new(50);
     private readonly Quantity _residualQuantity = new(5);
     private readonly Quantity _finalQuantity = new(30);
@@ -19,7 +21,7 @@ public class BottlingBeerCommandTest : CommandSpecification<BottlingBeer>
 
     protected override IEnumerable<DomainEvent> Given()
     {
-        yield return new BeerProductionCompleted(_beerId, _batchId, _finalQuantity,
+        yield return new BeerProductionCompleted(_beerId, _batchNumber, _finalQuantity,
             new ProductionCompleteTime(DateTime.UtcNow));
     }
 

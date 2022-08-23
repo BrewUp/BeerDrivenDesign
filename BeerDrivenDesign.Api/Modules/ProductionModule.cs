@@ -5,7 +5,7 @@ namespace BeerDrivenDesign.Api.Modules;
 
 public class ProductionModule : IModule
 {
-    private const string BaseEndpointUrl = "/production";
+    private const string BaseEndpointUrl = "v1/production";
 
     public bool IsEnabled => true;
     public int Order => 99;
@@ -19,8 +19,11 @@ public class ProductionModule : IModule
 
     public IEndpointRouteBuilder MapEndpoints(IEndpointRouteBuilder endpoints)
     {
-        endpoints.MapPost($"{BaseEndpointUrl}/beers/brew", ProductionEndpoints.HandleBrewBeer);
+        endpoints.MapPost($"{BaseEndpointUrl}/beers/brew", ProductionEndpoints.HandleStartProduction);
+        endpoints.MapPut("v1/production/beers/brew/{productionNumber}", ProductionEndpoints.HandleCompleteProduction);
+
         endpoints.MapGet($"{BaseEndpointUrl}/beers", ProductionEndpoints.HandleGetBeers);
+        endpoints.MapGet($"{BaseEndpointUrl}", ProductionEndpoints.HandleGetProductionOrders);
 
         return endpoints;
     }

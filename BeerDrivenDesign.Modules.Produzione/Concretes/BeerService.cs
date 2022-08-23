@@ -9,21 +9,18 @@ namespace BeerDrivenDesign.Modules.Produzione.Concretes;
 
 public sealed class BeerService : ProductionBaseService, IBeerService
 {
-    private readonly IPersister _persister;
-
     public BeerService(IPersister persister,
-        ILoggerFactory loggerFactory) : base(loggerFactory)
+        ILoggerFactory loggerFactory) : base(persister, loggerFactory)
     {
-        _persister = persister;
     }
 
-    public async Task CreateBeerAsync(BeerId beerId, Quantity quantity, BeerType beerType, BatchId batchId,
+    public async Task CreateBeerAsync(BeerId beerId, BeerType beerType, BatchId batchId,
         ProductionStartTime productionStartTime)
     {
         try
         {
-            var beer = Beer.CreateBeer(beerId, quantity, beerType, batchId, productionStartTime);
-            await _persister.InsertAsync(beer);
+            var beer = Beer.CreateBeer(beerId, beerType, batchId, productionStartTime);
+            await Persister.InsertAsync(beer);
         }
         catch (Exception ex)
         {
@@ -36,7 +33,7 @@ public sealed class BeerService : ProductionBaseService, IBeerService
     {
         try
         {
-            var beers = await _persister.FindAsync<Beer>();
+            var beers = await Persister.FindAsync<Beer>();
             var beersArray = beers as Beer[] ?? beers.ToArray();
 
             return beersArray.Any()

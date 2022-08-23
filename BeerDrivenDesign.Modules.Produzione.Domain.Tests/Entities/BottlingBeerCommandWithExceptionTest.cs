@@ -11,14 +11,17 @@ namespace BeerDrivenDesign.Modules.Produzione.Domain.Tests.Entities;
 public class BottlingBeerCommandWithExceptionTest : CommandSpecification<BottlingBeer>
 {
     private readonly BeerId _beerId = new(Guid.NewGuid());
-    private readonly BatchId _batchId = new("1234");
+
+    private readonly BatchNumber _batchNumber = new("1234");
+
     private readonly Quantity _initialQuantity = new(30);
-    private readonly BottleHalfLitre _bottleHalfLitre = new(50);
     private readonly Quantity _residualQuantity = new(5);
+
+    private readonly BottleHalfLitre _bottleHalfLitre = new(50);
 
     protected override IEnumerable<DomainEvent> Given()
     {
-        yield return new BeerProductionCompleted(_beerId, _batchId, _initialQuantity,
+        yield return new BeerProductionCompleted(_beerId, _batchNumber, _initialQuantity,
             new ProductionCompleteTime(DateTime.UtcNow));
         yield return new BeerBottled(_beerId, _bottleHalfLitre, _residualQuantity);
     }

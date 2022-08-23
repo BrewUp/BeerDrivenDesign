@@ -11,7 +11,7 @@ public static class ProductionHelper
     {
         services.AddScoped<ValidationHandler>();
         services.AddFluentValidation(options =>
-            options.RegisterValidatorsFromAssemblyContaining<BrewBeerValidator>());
+            options.RegisterValidatorsFromAssemblyContaining<ProductionBeerValidator>());
 
         return services;
     }

@@ -10,7 +10,8 @@ namespace BeerDrivenDesign.Modules.Produzione.Domain.Tests.Entities;
 
 public class StartBeerProductionTest : CommandSpecification<StartBeerProduction>
 {
-    private readonly BatchId _batchId = new("2022-125");
+    private readonly BatchId _batchId = new(Guid.NewGuid());
+    private readonly BatchNumber _batchNumber = new("2022-125");
 
     private readonly BeerId _beerId = new(Guid.NewGuid());
     private readonly BeerType _beerType = new("IPA");
@@ -25,7 +26,7 @@ public class StartBeerProductionTest : CommandSpecification<StartBeerProduction>
 
     protected override StartBeerProduction When()
     {
-        return new StartBeerProduction(_beerId, _batchId, _beerType, _quantity, _productionStartTime);
+        return new StartBeerProduction(_beerId, _batchId, _batchNumber, _beerType, _quantity, _productionStartTime);
     }
 
     protected override ICommandHandlerAsync<StartBeerProduction> OnHandler()
@@ -35,6 +36,6 @@ public class StartBeerProductionTest : CommandSpecification<StartBeerProduction>
 
     protected override IEnumerable<DomainEvent> Expect()
     {
-        yield return new BeerProductionStarted(_beerId, _beerType, _batchId, _quantity, _productionStartTime);
+        yield return new BeerProductionStarted(_beerId, _beerType, _batchId, _batchNumber, _quantity, _productionStartTime);
     }
 }

@@ -3,13 +3,14 @@ using FluentValidation;
 
 namespace BeerDrivenDesign.Modules.Produzione.Shared.Validators;
 
-public class BrewBeerValidator : AbstractValidator<PostBrewBeer>
+public class ProductionBeerValidator : AbstractValidator<PostProductionBeer>
 {
-    public BrewBeerValidator()
+    public ProductionBeerValidator()
     {
         RuleFor(h => h.Quantity).GreaterThan(0);
         RuleFor(h => h.BeerId).NotEmpty();
         RuleFor(h => h.BeerType).NotEmpty();
-        RuleFor(h => h.BatchId).NotEmpty();
+        RuleFor(h => h.BatchNumber).NotEmpty();
+        RuleFor(h => h.ProductionTime).GreaterThan(DateTime.MinValue);
     }
 }

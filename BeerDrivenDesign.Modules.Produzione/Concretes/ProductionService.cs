@@ -1,31 +1,79 @@
+using BeerDrivenDesign.Api.Shared.Concretes;
 using BeerDrivenDesign.Modules.Produzione.Abstracts;
 using BeerDrivenDesign.Modules.Produzione.Shared.Dtos;
-using BrewUp.Shared.Messages.Commands;
+using BeerDrivenDesign.ReadModel.Abstracts;
+using BeerDrivenDesign.ReadModel.Models;
 using BrewUp.Shared.Messages.CustomTypes;
 using Microsoft.Extensions.Logging;
-using Muflone;
 
 namespace BeerDrivenDesign.Modules.Produzione.Concretes;
 
 public sealed class ProductionService : ProductionBaseService, IProductionService
 {
-    private readonly IServiceBus _serviceBus;
-
-    public ProductionService(ILoggerFactory loggerFactory, IServiceBus serviceBus) : base(loggerFactory)
+    public ProductionService(ILoggerFactory loggerFactory, IPersister persister)
+        : base(persister, loggerFactory)
     {
-        _serviceBus = serviceBus;
     }
 
-    public async Task Brew(PostBrewBeer postBrewBeer)
+    public async Task CreateProductionOrderAsync(BatchId batchId, BatchNumber batchNumber, BeerId beerId,
+        BeerType beerType, Quantity quantity, ProductionStartTime productionStartTime)
     {
-        var command = new StartBeerProduction(
-            new BeerId(postBrewBeer.BeerId),
-            new BatchId(postBrewBeer.BatchId),
-            new BeerType(postBrewBeer.BeerType),
-            new Quantity(postBrewBeer.Quantity),
-            new ProductionStartTime(DateTime.UtcNow)
-        );
+        try
+        {
+            var productionOrder =
+                ProductionOrder.CreateProductionOrder(batchId, batchNumber, beerId, beerType, quantity,
+                    productionStartTime);
+            await Persister.InsertAsync(productionOrder);
+        }
+        catch (Exception ex)
+        {
+            Logger.LogError(CommonServices.GetDefaultErrorTrace(ex));
+            throw;
+        }
+    }
 
-        await _serviceBus.SendAsync(command);
+    public async Task CompleteProductionOrderAsync(BatchNumber batchNumber, Quantity quantity,
+        ProductionCompleteTime productionCompleteTime)
+    {
+        try
+        {
+            var productionOrder = await Persister.GetByIdAsync<ProductionOrder>(batchNumber.Value);
+
+            if (string.IsNullOrEmpty(productionOrder.Id))
+                return;
+
+            productionOrder.CompleteProduction(quantity, productionCompleteTime);
+            var propertiesToUpdate = new Dictionary<string, object>
+            {
+                { "ProductionCompleteTime", productionOrder.ProductionCompleteTime },
+                { "QuantityProduced", productionOrder.QuantityProduced },
+                { "Status", productionOrder.Status }
+            };
+
+            await Persister.UpdateOneAsync<ProductionOrder>(productionOrder.Id, propertiesToUpdate);
+        }
+        catch (Exception ex)
+        {
+            Logger.LogError(CommonServices.GetDefaultErrorTrace(ex));
+            throw;
+        }
+    }
+
+    public async Task<IEnumerable<ProductionOrderJson>> GetProductionOrdersAsync()
+    {
+        try
+        {
+            var productionOrders = await Persister.FindAsync<ProductionOrder>();
+            var ordersArray = productionOrders as ProductionOrder[] ?? productionOrders.ToArray();
+
+            return ordersArray.Any()
+                ? ordersArray.Select(p => p.ToJson())
+                : Enumerable.Empty<ProductionOrderJson>();
+        }
+        catch (Exception ex)
+        {
+            Logger.LogError(CommonServices.GetDefaultErrorTrace(ex));
+            throw;
+        }
     }
 }

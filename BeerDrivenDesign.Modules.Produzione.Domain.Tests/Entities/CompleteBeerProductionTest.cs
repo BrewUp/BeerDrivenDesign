@@ -10,7 +10,8 @@ namespace BeerDrivenDesign.Modules.Produzione.Domain.Tests.Entities;
 
 public class CompleteBeerProductionTest : CommandSpecification<CompleteBeerProduction>
 {
-    private readonly BatchId _batchId = new("2022-125");
+    private readonly BatchId _batchId = new(Guid.NewGuid());
+    private readonly BatchNumber _batchNumber = new("2022-125");
 
     private readonly BeerId _beerId = new(Guid.NewGuid());
     private readonly BeerType _beerType = new("IPA");
@@ -20,12 +21,12 @@ public class CompleteBeerProductionTest : CommandSpecification<CompleteBeerProdu
     private readonly ProductionCompleteTime _productionCompleteTime = new(DateTime.UtcNow.AddDays(1));
     protected override IEnumerable<DomainEvent> Given()
     {
-        yield return new BeerProductionStarted(_beerId, _beerType, _batchId, _quantity, _productionStartTime);
+        yield return new BeerProductionStarted(_beerId, _beerType, _batchId, _batchNumber, _quantity, _productionStartTime);
     }
 
     protected override CompleteBeerProduction When()
     {
-        return new CompleteBeerProduction(_batchId, _beerId, _quantity, _productionCompleteTime);
+        return new CompleteBeerProduction(_beerId, _batchNumber, _quantity, _productionCompleteTime);
     }
 
     protected override ICommandHandlerAsync<CompleteBeerProduction> OnHandler()
@@ -35,6 +36,6 @@ public class CompleteBeerProductionTest : CommandSpecification<CompleteBeerProdu
 
     protected override IEnumerable<DomainEvent> Expect()
     {
-        yield return new BeerProductionCompleted(_beerId, _batchId, _quantity, _productionCompleteTime);
+        yield return new BeerProductionCompleted(_beerId, _batchNumber, _quantity, _productionCompleteTime);
     }
 }

@@ -8,49 +8,20 @@ public class Beer : AggregateRoot
 {
     private BeerId _beerId = new (Guid.Empty);
     private BeerType _beerType = new("");
-    private Quantity _quantityToBeProduced = new(0);
-    private Quantity _quantityProduced = new(0);
-    private HopQuantity _hopQuantity = new(0);
+    
+    private Quantity _quantityAvailable = new(0);
 
-    private BottleHalfLitre _bottleHalfLitre;
-    private BatchId _batchId;
-    private ProductionStartTime _productionStartTime;
-    private ProductionCompleteTime _productionCompleteTime;
+    private BottleHalfLitre _bottleHalfLitre = new(0);
+
+    private IEnumerable<ProductionOrder> _productionOrders = Enumerable.Empty<ProductionOrder>();
 
     protected Beer()
     {
     }
 
-    #region Bottling
-    internal void BottlingBeer(BeerId beerId, BottleHalfLitre bottleHalfLitre)
-    {
-        if (_quantityProduced.Value - (bottleHalfLitre.Value * 0.5) >= 0)
-        {
-            RaiseEvent(new BeerBottledV2(beerId, bottleHalfLitre,
-                new Quantity(_quantityProduced.Value - bottleHalfLitre.Value * 0.5), new BeerLabel("Label")));
-        }
-        else
-        {
-            RaiseEvent(new ProductionExceptionHappened(beerId, "Non hai abbastanza birra!!!!"));
-        }
-    }
-
-    private void Apply(BeerBottled @event)
-    {
-        _quantityToBeProduced = @event.Quantity;
-        _bottleHalfLitre = @event.BottleHalfLitre;
-    }
-
-    private void Apply(BeerBottledV2 @event)
-    {
-        _quantityToBeProduced = @event.Quantity;
-        _bottleHalfLitre = @event.BottleHalfLitre;
-    }
-    #endregion
-
     #region StartProduction
-    public static Beer StartBeerProduction(BeerId beerId, BeerType beerType, BatchId batchId, Quantity quantity,
-        ProductionStartTime productionStartTime)
+    public static Beer StartBeerProduction(BeerId beerId, BeerType beerType, BatchId batchId, BatchNumber batchNumber,
+        Quantity quantity, ProductionStartTime productionStartTime)
     {
         /* - la validità del comando la controlla l'aggregato se è roba semplice, oppure un DomainService apposito
          *
@@ -67,13 +38,13 @@ public class Beer : AggregateRoot
          * L'Apply applica l'evento, e inizializza/aggiorna le proprietà dell'aggregato.
          */
 
-        return new Beer(beerId, beerType, batchId, quantity, productionStartTime);
+        return new Beer(beerId, beerType, batchId, batchNumber, quantity, productionStartTime);
     }
 
-    private Beer(BeerId beerId, BeerType beerType, BatchId batchId, Quantity quantity,
+    private Beer(BeerId beerId, BeerType beerType, BatchId batchId, BatchNumber batchNumber, Quantity quantity,
         ProductionStartTime productionStartTime)
     {
-        RaiseEvent(new BeerProductionStarted(beerId, beerType, batchId, quantity, productionStartTime));
+        RaiseEvent(new BeerProductionStarted(beerId, beerType, batchId, batchNumber, quantity, productionStartTime));
     }
 
     private void Apply(BeerProductionStarted @event)
@@ -81,24 +52,65 @@ public class Beer : AggregateRoot
         Id = @event.AggregateId;
         _beerId = @event.BeerId;
         _beerType = @event.BeerType;
-        _batchId = @event.BatchId;
-        _quantityToBeProduced = @event.Quantity;
-        _productionStartTime = @event.ProductionStartTime;
+
+        var productionOrder =
+            ProductionOrder.StartProduction(@event.BatchId, @event.BatchNumber, @event.Quantity,
+                @event.ProductionStartTime);
+        _productionOrders = _productionOrders.Concat(new List<ProductionOrder>
+        {
+            productionOrder
+        });
     }
     #endregion
 
     #region CompleteProduction
-    internal void CompleteBeerProduction(BatchId batchId, Quantity quantity, ProductionCompleteTime productionCompleteTime)
+    internal void CompleteBeerProduction(BatchNumber batchNumber, Quantity quantity,
+        ProductionCompleteTime productionCompleteTime)
     {
-        RaiseEvent(new BeerProductionCompleted(_beerId, batchId, quantity, productionCompleteTime));
+        RaiseEvent(new BeerProductionCompleted(_beerId, batchNumber, quantity, productionCompleteTime));
     }
     private void Apply(BeerProductionCompleted @event)
     {
         Id = @event.AggregateId;
         _beerId = @event.BeerId;
-        _batchId = @event.BatchId;
-        _quantityProduced = @event.Quantity;
-        _productionCompleteTime = @event.ProductionCompleteTime;
+        _quantityAvailable = new Quantity(_quantityAvailable.Value + @event.Quantity.Value);
+
+        var productionOrder = _productionOrders.FirstOrDefault(p => p.batchNumber.Equals(@event.BatchNumber));
+        if (productionOrder == null) return;
+
+        productionOrder.CompleteProduction(@event.Quantity, @event.ProductionCompleteTime);
+        _productionOrders = _productionOrders.Where(p => !p.batchNumber.Equals(@event.BatchNumber))
+            .Concat(new List<ProductionOrder>
+            {
+                productionOrder
+            });
+    }
+    #endregion
+
+    #region Bottling
+    internal void BottlingBeer(BeerId beerId, BottleHalfLitre bottleHalfLitre)
+    {
+        if (_quantityAvailable.Value - (bottleHalfLitre.Value * 0.5) >= 0)
+        {
+            RaiseEvent(new BeerBottledV2(beerId, bottleHalfLitre,
+                new Quantity(_quantityAvailable.Value - bottleHalfLitre.Value * 0.5), new BeerLabel("Label")));
+        }
+        else
+        {
+            RaiseEvent(new ProductionExceptionHappened(beerId, "Non hai abbastanza birra!!!!"));
+        }
+    }
+
+    private void Apply(BeerBottled @event)
+    {
+        _quantityAvailable = @event.Quantity;
+        _bottleHalfLitre = @event.BottleHalfLitre;
+    }
+
+    private void Apply(BeerBottledV2 @event)
+    {
+        _quantityAvailable = @event.Quantity;
+        _bottleHalfLitre = @event.BottleHalfLitre;
     }
     #endregion
 

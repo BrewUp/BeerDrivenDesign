@@ -12,14 +12,13 @@ public class Beer : ModelBase
     protected Beer()
     {}
 
-    public static Beer CreateBeer(BeerId beerId, Quantity quantity, BeerType beerType, BatchId batchId,
+    public static Beer CreateBeer(BeerId beerId, BeerType beerType, BatchId batchId,
         ProductionStartTime productionStartTime) =>
-        new(beerId.Value, quantity.Value, beerType.Value);
+        new(beerId.Value, beerType.Value);
 
-    private Beer(Guid beerId, double quantity, string beerType)
+    private Beer(Guid beerId, string beerType)
     {
         Id = beerId.ToString();
-        Quantity = quantity;
         BeerType = beerType;
     }
 

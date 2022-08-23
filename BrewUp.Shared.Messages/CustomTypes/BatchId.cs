@@ -1,3 +1,10 @@
-﻿namespace BrewUp.Shared.Messages.CustomTypes;
+﻿using Muflone.Core;
 
-public record BatchId(string Value);
+namespace BrewUp.Shared.Messages.CustomTypes;
+
+public sealed class BatchId : DomainId
+{
+    public BatchId(Guid value) : base(value)
+    {
+    }
+}

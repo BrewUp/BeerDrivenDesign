@@ -20,7 +20,7 @@ public class CompleteBeerProductionCommandHandler : CommandHandlerAsync<Complete
         try
         {
             var beer = await Repository.GetByIdAsync<Beer>(command.AggregateId.Value);
-            beer.CompleteBeerProduction(command.BatchId, command.Quantity, command.ProductionCompleteTime);
+            beer.CompleteBeerProduction(command.BatchNumber, command.Quantity, command.ProductionCompleteTime);
 
             await Repository.SaveAsync(beer, Guid.NewGuid());
         }

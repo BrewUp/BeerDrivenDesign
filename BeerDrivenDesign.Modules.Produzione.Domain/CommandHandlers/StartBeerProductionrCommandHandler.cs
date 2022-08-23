@@ -27,7 +27,7 @@ public class StartBeerProductionCommandHandler : CommandHandlerAsync<StartBeerPr
         try
         {
             var beer = Beer.StartBeerProduction(new BeerId(command.AggregateId.Value), command.BeerType,
-                command.BatchId, command.Quantity, command.ProductionStartTime);
+                command.BatchId, command.BatchNumber, command.Quantity, command.ProductionStartTime);
 
             await Repository.SaveAsync(beer, Guid.NewGuid());
         }

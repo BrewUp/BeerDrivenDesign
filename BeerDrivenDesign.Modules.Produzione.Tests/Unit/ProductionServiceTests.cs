@@ -23,7 +23,8 @@ public class ProductionServiceTests
 
         var command = new StartBeerProduction(
             new BeerId(Guid.NewGuid()),
-            new BatchId("20220822-10"),
+            new BatchId(Guid.NewGuid()),
+            new BatchNumber("1234"),
             new BeerType("IPA"),
             new Quantity(100),
             new ProductionStartTime(DateTime.UtcNow)
