@@ -1,12 +1,9 @@
 using System.Linq.Expressions;
-using LanguageExt;
 
 namespace BeerDrivenDesign.ReadModel.Abstracts;
 
 public interface IPersister
 {
-    Task<Either<Exception, T>> GetByIdFuncAsync<T>(string id) where T : ModelBase;
-
     Task<T> GetByIdAsync<T>(string id) where T : ModelBase;
     Task InsertAsync<T>(T dtoToInsert) where T : ModelBase;
     Task ReplaceAsync<T>(T dtoToUpdate) where T : ModelBase;

@@ -9,18 +9,18 @@ using static LanguageExt.Prelude;
 
 namespace BeerDrivenDesign.ReadModel.MongoDb.Repositories;
 
-public sealed class Persister : IPersister
+public sealed class FunctionalPersister : IFunctionalPersister
 {
     private readonly IMongoDatabase _mongoDatabase;
     private readonly ILogger _logger;
 
-    public Persister(IMongoDatabase mongoDatabase, ILoggerFactory loggerFactory)
+    public FunctionalPersister(IMongoDatabase mongoDatabase, ILoggerFactory loggerFactory)
     {
         _mongoDatabase = mongoDatabase;
         _logger = loggerFactory.CreateLogger(GetType());
     }
 
-    public async Task<Either<Exception, T>> GetByIdFuncAsync<T>(string id) where T : ModelBase
+    public async Task<Either<Exception, T>> GetByIdAsync<T>(string id) where T : ModelBase
     {
         try
         {
@@ -38,53 +38,39 @@ public sealed class Persister : IPersister
         }
     }
 
-    public async Task<T> GetByIdAsync<T>(string id) where T : ModelBase
-    {
-        try
-        {
-            var collection = _mongoDatabase.GetCollection<T>(GetCollectionName<T>()).AsQueryable();
-
-            var results = await Task.Run(() => collection.Where(t => t.Id.Equals(id) && !t.IsDeleted));
-            return await results.AnyAsync()
-                ? results.First()
-                : ConstructEntity<T>();
-        }
-        catch (Exception ex)
-        {
-            _logger.LogError(CommonServices.GetDefaultErrorTrace(ex));
-            throw;
-        }
-    }
-
-    public async Task InsertAsync<T>(T dtoToInsert) where T : ModelBase
+    public async Task<Either<Exception, string>> InsertAsync<T>(T dtoToInsert) where T : ModelBase
     {
         try
         {
             var collection = _mongoDatabase.GetCollection<T>(GetCollectionName<T>());
             await collection.InsertOneAsync(dtoToInsert);
+
+            return Right(dtoToInsert.Id);
         }
         catch (Exception ex)
         {
             _logger.LogError(CommonServices.GetDefaultErrorTrace(ex));
-            throw;
+            return Left(ex);
         }
     }
 
-    public async Task ReplaceAsync<T>(T dtoToUpdate) where T : ModelBase
+    public async Task<Either<Exception, string>> ReplaceAsync<T>(T dtoToUpdate) where T : ModelBase
     {
         try
         {
             var collection = _mongoDatabase.GetCollection<T>(GetCollectionName<T>());
             await collection.ReplaceOneAsync(x => x.Id == dtoToUpdate.Id, dtoToUpdate);
+
+            return Right(dtoToUpdate.Id);
         }
         catch (Exception ex)
         {
             _logger.LogError(CommonServices.GetDefaultErrorTrace(ex));
-            throw;
+            return Left(ex);
         }
     }
 
-    public async Task UpdateOneAsync<T>(string id, Dictionary<string, object> propertiesToUpdate) where T : ModelBase
+    public async Task<Either<Exception, string>> UpdateOneAsync<T>(string id, Dictionary<string, object> propertiesToUpdate) where T : ModelBase
     {
         try
         {
@@ -99,27 +85,31 @@ public sealed class Persister : IPersister
                 combinedUpdate);
 
             if (!updateResult.IsAcknowledged)
-                throw new Exception($"Failed to Update {typeof(T).Name}");
+                return Left(new Exception($"Failed to Update {typeof(T).Name}"));
+
+            return Right(id);
         }
         catch (Exception ex)
         {
             _logger.LogError(CommonServices.GetDefaultErrorTrace(ex));
-            throw;
+            return Left(ex);
         }
     }
 
-    public async Task DeleteAsync<T>(string id) where T : ModelBase
+    public async Task<Either<Exception, string>> DeleteAsync<T>(string id) where T : ModelBase
     {
         try
         {
             var collection = _mongoDatabase.GetCollection<T>(GetCollectionName<T>());
             var filter = Builders<T>.Filter.Eq("_id", id);
             await collection.FindOneAndDeleteAsync(filter);
+
+            return Right(id);
         }
         catch (Exception ex)
         {
             _logger.LogError(CommonServices.GetDefaultErrorTrace(ex));
-            throw;
+            return Left(ex);
         }
     }
 
@@ -137,21 +127,28 @@ public sealed class Persister : IPersister
         }
     }
 
-    public async Task<IEnumerable<T>> FindAsync<T>(Expression<Func<T, bool>> filter = null) where T : ModelBase
+    public async Task<Either<Exception, T[]>> FindAsync<T>(Expression<Func<T, bool>> filter = null) where T : ModelBase
     {
         try
         {
             var collection = _mongoDatabase.GetCollection<T>(GetCollectionName<T>()).AsQueryable();
 
-            return await Task.Run(() => filter != null
+            var documents = await Task.Run(() => filter != null
                 ? collection.Where(filter).Where(c => !c.IsDeleted)
                 : collection);
+
+            return Right(documents.ToArray());
         }
         catch (Exception ex)
         {
             _logger.LogError(CommonServices.GetDefaultErrorTrace(ex));
-            throw;
+            return Left(ex);
         }
+    }
+
+    public Task<Either<Exception, T[]>> F1ndAsync<T>(Expression<Func<T, bool>>? filter = null) where T : ModelBase
+    {
+        throw new NotImplementedException();
     }
 
     private static string GetCollectionName<T>() where T : ModelBase => typeof(T).Name;

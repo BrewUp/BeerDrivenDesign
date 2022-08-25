@@ -26,14 +26,26 @@ public class StartBeerProductionCommandHandler : CommandHandlerAsync<StartBeerPr
          */
         try
         {
-            var beer = Beer.StartBeerProduction(new BeerId(command.AggregateId.Value), command.BeerType,
-                command.BatchId, command.BatchNumber, command.Quantity, command.ProductionStartTime);
+            var beer = await Repository.GetByIdAsync<Beer>(command.AggregateId.Value);
+            if (beer != null && beer.Id.Value != Guid.Empty)
+            {
+                beer.StartNewProductionOrder(new BeerId(command.AggregateId.Value), command.BatchId, command.BatchNumber,
+                    command.Quantity, command.ProductionStartTime);
+            }
+            else
+            {
+                beer = Beer.StartBeerProduction(new BeerId(command.AggregateId.Value), command.BeerType,
+                    command.BatchId, command.BatchNumber, command.Quantity, command.ProductionStartTime);
+            }
 
             await Repository.SaveAsync(beer, Guid.NewGuid());
         }
         catch (Exception ex)
         {
-            CoreException.CreateAggregateException(new BeerId(command.AggregateId.Value), ex);
+            var beer = Beer.StartBeerProduction(new BeerId(command.AggregateId.Value), command.BeerType,
+                command.BatchId, command.BatchNumber, command.Quantity, command.ProductionStartTime);
+
+            await Repository.SaveAsync(beer, Guid.NewGuid());
         }
     }
 }

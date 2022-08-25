@@ -63,6 +63,14 @@ public class Beer : AggregateRoot
     }
     #endregion
 
+    #region MyRegion
+    internal void StartNewProductionOrder(BeerId beerId, BatchId batchId, BatchNumber batchNumber, Quantity quantity,
+        ProductionStartTime productionStartTime)
+    {
+
+    }
+    #endregion
+
     #region CompleteProduction
     internal void CompleteBeerProduction(BatchNumber batchNumber, Quantity quantity,
         ProductionCompleteTime productionCompleteTime)
