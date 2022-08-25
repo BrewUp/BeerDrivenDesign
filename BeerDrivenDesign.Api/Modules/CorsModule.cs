@@ -16,9 +16,10 @@ public sealed class CorsModule : IModule
         builder.Services.AddCors(options =>
         {
             options.AddPolicy("CorsPolicy", corsBuilder =>
-                corsBuilder.AllowAnyMethod()
-                    .AllowAnyOrigin()
-                    .AllowAnyHeader());
+                corsBuilder.SetIsOriginAllowed(origin => true)
+                    .AllowAnyHeader()
+                    .AllowAnyMethod()
+                    .AllowAnyOrigin());
         });
 
         return builder.Services;

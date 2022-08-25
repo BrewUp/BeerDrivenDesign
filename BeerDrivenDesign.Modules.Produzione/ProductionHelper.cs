@@ -19,7 +19,7 @@ public static class ProductionHelper
         services.AddScoped<IProductionService, ProductionService>();
         services.AddScoped<IBeerService, BeerService>();
 
-        services.AddScoped<ProductionHub>();
+        services.AddSingleton<ProductionHub>();
 
         #region DomainEventHandler
         services.AddScoped<IDomainEventHandlerFactoryAsync, DomainEventHandlerFactoryAsync>();
