@@ -1,7 +1,6 @@
-﻿using BeerDrivenDesign.Api;
-using Microsoft.AspNetCore.SignalR;
+﻿using Microsoft.AspNetCore.SignalR;
 
-namespace BlazorChatSignalR.Server.Hubs
+namespace BeerDrivenDesign.Api.Hubs
 {
     public class ChatHub : Hub
     {

@@ -2,6 +2,7 @@
 using BeerDrivenDesign.Modules.Produzione.Concretes;
 using BeerDrivenDesign.Modules.Produzione.EventsHandlers;
 using BeerDrivenDesign.Modules.Produzione.Factories;
+using BeerDrivenDesign.Modules.Produzione.Hubs;
 using BrewUp.Shared.Messages.Events;
 using Microsoft.Extensions.DependencyInjection;
 using Muflone.Factories;
@@ -17,6 +18,8 @@ public static class ProductionHelper
 
         services.AddScoped<IProductionService, ProductionService>();
         services.AddScoped<IBeerService, BeerService>();
+
+        services.AddScoped<ProductionHub>();
 
         #region DomainEventHandler
         services.AddScoped<IDomainEventHandlerFactoryAsync, DomainEventHandlerFactoryAsync>();

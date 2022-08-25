@@ -1,4 +1,4 @@
-﻿using BlazorChatSignalR.Server.Hubs;
+﻿using BeerDrivenDesign.Api.Hubs;
 
 namespace BeerDrivenDesign.Api;
 

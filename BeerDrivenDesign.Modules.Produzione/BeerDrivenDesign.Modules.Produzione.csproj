@@ -21,6 +21,7 @@
 
     <ItemGroup>
       <Folder Include="Consumers\DomainEvents\" />
+      <Folder Include="Hubs\" />
     </ItemGroup>
 
 </Project>
