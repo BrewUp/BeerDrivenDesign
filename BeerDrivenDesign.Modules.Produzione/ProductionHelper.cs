@@ -15,6 +15,7 @@ public static class ProductionHelper
     public static IServiceCollection AddProductionModule(this IServiceCollection services)
     {
         services.AddScoped<IProductionOrchestrator, ProductionOrchestrator>();
+        services.AddSingleton<IProductionBroadcastService, ProductionBroadcastService>();
 
         services.AddScoped<IProductionService, ProductionService>();
         services.AddScoped<IBeerService, BeerService>();

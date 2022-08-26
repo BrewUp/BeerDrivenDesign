@@ -19,11 +19,15 @@ public class ProductionModule : IModule
 
     public IEndpointRouteBuilder MapEndpoints(IEndpointRouteBuilder endpoints)
     {
-        endpoints.MapPost($"{BaseEndpointUrl}/beers/brew", ProductionEndpoints.HandleStartProduction);
-        endpoints.MapPut("v1/production/beers/brew/{productionNumber}", ProductionEndpoints.HandleCompleteProduction);
+        endpoints.MapPost($"{BaseEndpointUrl}/beers/brew", ProductionEndpoints.HandleStartProduction)
+            .WithTags("Production");
+        endpoints.MapPut("v1/production/beers/brew/{productionNumber}", ProductionEndpoints.HandleCompleteProduction)
+            .WithTags("Production");
 
-        endpoints.MapGet($"{BaseEndpointUrl}/beers", ProductionEndpoints.HandleGetBeers);
-        endpoints.MapGet($"{BaseEndpointUrl}", ProductionEndpoints.HandleGetProductionOrders);
+        endpoints.MapGet($"{BaseEndpointUrl}/beers", ProductionEndpoints.HandleGetBeers)
+            .WithTags("Production");
+        endpoints.MapGet($"{BaseEndpointUrl}", ProductionEndpoints.HandleGetProductionOrders)
+            .WithTags("Production");
 
         return endpoints;
     }

@@ -1,6 +1,8 @@
 ﻿using BeerDrivenDesign.Api.Shared.Concretes;
 using BeerDrivenDesign.Modules.Produzione.Abstracts;
+using BeerDrivenDesign.Modules.Produzione.Hubs;
 using BeerDrivenDesign.Modules.Produzione.Shared.Dtos;
+using BrewUp.Shared.Messages.CustomTypes;
 using FluentValidation;
 using Microsoft.AspNetCore.Http;
 
@@ -51,5 +53,12 @@ public static class ProductionEndpoints
         var orders = await productionService.GetProductionOrdersAsync();
 
         return Results.Ok(orders);
+    }
+
+    public static async Task<IResult> HandleGetSignalR(IProductionBroadcastService productionBroadcastService)
+    {
+        await productionBroadcastService.PublishProductionOrderUpdatedAsync(new BatchId(Guid.NewGuid()));
+
+        return Results.Ok();
     }
 }

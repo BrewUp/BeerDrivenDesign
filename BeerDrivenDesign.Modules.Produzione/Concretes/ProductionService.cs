@@ -64,7 +64,8 @@ public sealed class ProductionService : ProductionBaseService, IProductionServic
         try
         {
             var productionOrders = await Persister.FindAsync<ProductionOrder>();
-            var ordersArray = productionOrders as ProductionOrder[] ?? productionOrders.ToArray();
+            var ordersArray = productionOrders as ProductionOrder[] ??
+                              productionOrders.OrderByDescending(p => p.Id).ToArray();
 
             return ordersArray.Any()
                 ? ordersArray.Select(p => p.ToJson())

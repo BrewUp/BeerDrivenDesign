@@ -1,5 +1,4 @@
 ﻿using BeerDrivenDesign.Modules.Produzione.Abstracts;
-using BeerDrivenDesign.Modules.Produzione.Hubs;
 using BrewUp.Shared.Messages.Events;
 using Microsoft.Extensions.Logging;
 
@@ -8,14 +7,14 @@ namespace BeerDrivenDesign.Modules.Produzione.EventsHandlers;
 public sealed class BeerProductionStartedForProductionOrderEventHandler : ProductionDomainEventHandler<BeerProductionStarted>
 {
     private readonly IProductionService _productionService;
-    private readonly ProductionHub _productionHub;
+    private readonly IProductionBroadcastService _productionBroadcastService;
 
     public BeerProductionStartedForProductionOrderEventHandler(ILoggerFactory loggerFactory,
-        ProductionHub productionHub,
+        IProductionBroadcastService productionBroadcastService,
         IProductionService productionService) : base(loggerFactory)
     {
         _productionService = productionService;
-        _productionHub = productionHub;
+        _productionBroadcastService = productionBroadcastService;
     }
 
     public override async Task HandleAsync(BeerProductionStarted @event, CancellationToken cancellationToken = new())
@@ -25,7 +24,7 @@ public sealed class BeerProductionStartedForProductionOrderEventHandler : Produc
             await _productionService.CreateProductionOrderAsync(@event.BatchId, @event.BatchNumber, @event.BeerId,
                 @event.BeerType, @event.Quantity, @event.ProductionStartTime);
 
-            await _productionHub.ProductionOrderUpdated(@event.BatchId);
+            await _productionBroadcastService.PublishProductionOrderUpdatedAsync(@event.BatchId);
         }
         catch (Exception ex)
         {

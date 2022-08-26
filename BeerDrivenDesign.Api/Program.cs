@@ -1,16 +1,9 @@
 using BeerDrivenDesign.Api.Modules;
-using BeerDrivenDesign.Modules.Produzione.Hubs;
-using FluentValidation.AspNetCore;
 
 var builder = WebApplication.CreateBuilder(args);
 
-
-builder.Services.AddSignalR(options => options.EnableDetailedErrors = true);
-
 // Register Modules
 builder.RegisterModules();
-
-builder.Services.AddFluentValidation(options => options.RegisterValidatorsFromAssemblyContaining<Program>());
 
 var app = builder.Build();
 
@@ -21,8 +14,6 @@ app.UseAuthorization();
 
 // Register endpoints
 app.MapEndpoints();
-
-app.MapHub<ProductionHub>("/hubs/production");
 
 // Configure the HTTP request pipeline.
 if (builder.Environment.IsDevelopment())
