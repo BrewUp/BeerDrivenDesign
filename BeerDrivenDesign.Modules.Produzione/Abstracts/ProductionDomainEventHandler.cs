@@ -13,4 +13,24 @@ public abstract class ProductionDomainEventHandler<T> : IDomainEventHandlerAsync
     }
 
     public abstract Task HandleAsync(T @event, CancellationToken cancellationToken = new());
+
+    #region Dispose
+    protected virtual void Dispose(bool disposing)
+    {
+        if (disposing)
+        {
+        }
+    }
+
+    public void Dispose()
+    {
+        Dispose(true);
+        GC.SuppressFinalize(this);
+    }
+
+    ~ProductionDomainEventHandler()
+    {
+        Dispose(false);
+    }
+    #endregion
 }

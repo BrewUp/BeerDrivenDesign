@@ -4,7 +4,7 @@ using BeerDrivenDesign.Modules.Produzione.Shared.Dtos;
 using BrewUp.Shared.Messages.Commands;
 using BrewUp.Shared.Messages.CustomTypes;
 using Microsoft.Extensions.Logging;
-using Muflone;
+using Muflone.Persistence;
 
 namespace BeerDrivenDesign.Modules.Produzione.Concretes;
 

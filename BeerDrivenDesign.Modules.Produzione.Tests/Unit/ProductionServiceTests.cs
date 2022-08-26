@@ -1,8 +1,8 @@
-using BeerDrivenDesign.Modules.Produzione.Shared.Dtos;
+
 using BrewUp.Shared.Messages.Commands;
 using BrewUp.Shared.Messages.CustomTypes;
 using BrewUp.Shared.Messages.Events;
-using Muflone.Transport.Azure.Extensions;
+using Muflone.Persistence;
 
 namespace BeerDrivenDesign.Modules.Produzione.Tests.Unit;
 
@@ -17,9 +17,9 @@ public class ProductionServiceTests
     }
 
     [Fact]
-    public void Can_Serialize_And_Deserialize_A_Command()
+    public async Task Can_Serialize_And_Deserialize_A_Command()
     {
-        var messageSerilizer = new MessageSerializer();
+        var messageSerilizer = new Serializer();
 
         var command = new StartBeerProduction(
             new BeerId(Guid.NewGuid()),
@@ -30,8 +30,8 @@ public class ProductionServiceTests
             new ProductionStartTime(DateTime.UtcNow)
         );
 
-        var commandSerialized = messageSerilizer.Serialize(command);
-        var commandDeserialized = messageSerilizer.Deserialize<StartBeerProduction>(commandSerialized);
+        var commandSerialized = await messageSerilizer.SerializeAsync(command);
+        var commandDeserialized = await messageSerilizer.DeserializeAsync<StartBeerProduction>(commandSerialized);
 
         Assert.Equal(command.BatchId, commandDeserialized.BatchId);
     }
