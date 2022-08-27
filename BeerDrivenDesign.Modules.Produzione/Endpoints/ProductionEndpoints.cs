@@ -1,6 +1,5 @@
 ﻿using BeerDrivenDesign.Api.Shared.Concretes;
 using BeerDrivenDesign.Modules.Produzione.Abstracts;
-using BeerDrivenDesign.Modules.Produzione.Hubs;
 using BeerDrivenDesign.Modules.Produzione.Shared.Dtos;
 using BrewUp.Shared.Messages.CustomTypes;
 using FluentValidation;
