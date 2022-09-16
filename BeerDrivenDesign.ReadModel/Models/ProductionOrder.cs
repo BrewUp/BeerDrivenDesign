@@ -1,6 +1,5 @@
 ﻿using BeerDrivenDesign.Modules.Produzione.Shared.Dtos;
 using BeerDrivenDesign.ReadModel.Abstracts;
-using BrewUp.Shared.Messages.CustomTypes;
 
 namespace BeerDrivenDesign.ReadModel.Models;
 
@@ -19,10 +18,6 @@ public class ProductionOrder : ModelBase
     protected ProductionOrder()
     {}
 
-    public static ProductionOrder CreateProductionOrder(BatchId batchId, BatchNumber batchNumber, BeerId beerId,
-        BeerType beerType, Quantity quantity, ProductionStartTime productionStartTime) => new(batchId.Value,
-        batchNumber.Value, beerId.Value.ToString(), beerType.Value, quantity.Value, productionStartTime.Value);
-
     private ProductionOrder(Guid batchId, string batchNumber, string beerId, string beerType, double quantity, DateTime productionStartTime)
     {
         Id = batchNumber;
@@ -36,14 +31,6 @@ public class ProductionOrder : ModelBase
 
         ProductionStartTime = productionStartTime;
         Status = "Open";
-    }
-
-    public void CompleteProduction(Quantity quantity, ProductionCompleteTime productionCompleteTime)
-    {
-        QuantityProduced = quantity.Value;
-        ProductionCompleteTime = productionCompleteTime.Value;
-
-        Status = "Completed";
     }
 
     public ProductionOrderJson ToJson() => new()

@@ -1,6 +1,5 @@
 ﻿using BeerDrivenDesign.Modules.Produzione.Shared.Dtos;
 using BeerDrivenDesign.ReadModel.Abstracts;
-using BrewUp.Shared.Messages.CustomTypes;
 
 namespace BeerDrivenDesign.ReadModel.Models;
 
@@ -11,12 +10,6 @@ public class Beer : ModelBase
 
     protected Beer()
     {}
-
-    public static Beer CreateBeer(BeerId beerId, BeerType beerType, BatchId batchId,
-        ProductionStartTime productionStartTime) =>
-        new(beerId.Value, beerType.Value);
-
-    public void UpdateQuantity(Quantity quantity) => Quantity = quantity.Value;
 
     private Beer(Guid beerId, string beerType)
     {
