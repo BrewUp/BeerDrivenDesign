@@ -18,12 +18,12 @@
 	</ItemGroup>
 
 	<ItemGroup>
-	  <Folder Include="Models\" />
+	  <ProjectReference Include="..\BeerDrivenDesign.Modules.Produzione\BeerDrivenDesign.Modules.Produzione.csproj" />
+	  <ProjectReference Include="..\BeerDrivenDesign.ReadModel.MongoDb\BeerDrivenDesign.ReadModel.MongoDb.csproj" />
 	</ItemGroup>
 
 	<ItemGroup>
-	  <ProjectReference Include="..\BeerDrivenDesign.Modules.Produzione\BeerDrivenDesign.Modules.Produzione.csproj" />
-	  <ProjectReference Include="..\BeerDrivenDesign.ReadModel.MongoDb\BeerDrivenDesign.ReadModel.MongoDb.csproj" />
+	  <Folder Include="Modules\" />
 	</ItemGroup>
 
 </Project>
