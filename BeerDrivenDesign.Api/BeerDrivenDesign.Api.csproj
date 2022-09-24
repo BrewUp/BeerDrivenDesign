@@ -24,6 +24,7 @@
 	<ItemGroup>
 	  <ProjectReference Include="..\BeerDrivenDesign.Modules.Produzione.Domain\BeerDrivenDesign.Modules.Produzione.Domain.csproj" />
 	  <ProjectReference Include="..\BeerDrivenDesign.Modules.Produzione\BeerDrivenDesign.Modules.Produzione.csproj" />
+	  <ProjectReference Include="..\BeerDrivenDesign.Modules.Pubs\BeerDrivenDesign.Modules.Pubs.csproj" />
 	  <ProjectReference Include="..\BeerDrivenDesign.ReadModel.MongoDb\BeerDrivenDesign.ReadModel.MongoDb.csproj" />
 	</ItemGroup>
 

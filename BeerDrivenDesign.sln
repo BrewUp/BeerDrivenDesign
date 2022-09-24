@@ -49,7 +49,11 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "MongoDb", "MongoDb", "{D4F9
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BrewUp.Shared.Messages", "BrewUp.Shared.Messages\BrewUp.Shared.Messages.csproj", "{C385A354-832B-411E-88C2-AA7BCA43E8FD}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BeerDrivenDesign.Modules.Produzione.Shared", "BeerDrivenDesign.Modules.Produzione.Shared\BeerDrivenDesign.Modules.Produzione.Shared.csproj", "{F8B2A78F-9F6C-4157-A53F-B577BA11704D}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BeerDrivenDesign.Modules.Produzione.Shared", "BeerDrivenDesign.Modules.Produzione.Shared\BeerDrivenDesign.Modules.Produzione.Shared.csproj", "{F8B2A78F-9F6C-4157-A53F-B577BA11704D}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Pubs", "Pubs", "{CA59B3C5-2D10-40E6-8E99-5B6C59D6A0B1}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BeerDrivenDesign.Modules.Pubs", "BeerDrivenDesign.Modules.Pubs\BeerDrivenDesign.Modules.Pubs.csproj", "{EDED4157-3D0E-47D8-9B1E-C9CC5B5CD133}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -113,6 +117,10 @@ Global
 		{F8B2A78F-9F6C-4157-A53F-B577BA11704D}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{F8B2A78F-9F6C-4157-A53F-B577BA11704D}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{F8B2A78F-9F6C-4157-A53F-B577BA11704D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{EDED4157-3D0E-47D8-9B1E-C9CC5B5CD133}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EDED4157-3D0E-47D8-9B1E-C9CC5B5CD133}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EDED4157-3D0E-47D8-9B1E-C9CC5B5CD133}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EDED4157-3D0E-47D8-9B1E-C9CC5B5CD133}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -137,6 +145,8 @@ Global
 		{D4F97378-EB38-4D81-923E-62DDBCEEC797} = {05DC3254-C93F-45FF-8F87-62C6A3583041}
 		{C385A354-832B-411E-88C2-AA7BCA43E8FD} = {65D4789C-CD75-45B1-A822-6353A5A255F6}
 		{F8B2A78F-9F6C-4157-A53F-B577BA11704D} = {E904FFAE-E02B-4E6D-BD0D-C2BCD33DAE18}
+		{CA59B3C5-2D10-40E6-8E99-5B6C59D6A0B1} = {725C5103-31FF-4E4B-B91F-0B956B7A4DEE}
+		{EDED4157-3D0E-47D8-9B1E-C9CC5B5CD133} = {CA59B3C5-2D10-40E6-8E99-5B6C59D6A0B1}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {347AA373-5AB4-48C0-B34B-AADED3524E84}
