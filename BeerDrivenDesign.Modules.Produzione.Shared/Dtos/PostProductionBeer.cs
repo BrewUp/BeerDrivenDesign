@@ -1,3 +1,3 @@
 namespace BeerDrivenDesign.Modules.Produzione.Shared.Dtos;
 
-public record PostProductionBeer(Guid BeerId, string BeerType, string BatchNumber, double Quantity, DateTime ProductionTime);
+public record PostProductionBeer(Guid BatchId, string BatchNumber, Guid BeerId, string BeerType, double Quantity, DateTime ProductionTime);

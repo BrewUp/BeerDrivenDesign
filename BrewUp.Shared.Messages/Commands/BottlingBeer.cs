@@ -5,12 +5,12 @@ namespace BrewUp.Shared.Messages.Commands;
 
 public sealed class BottlingBeer : Command
 {
-    public readonly BeerId BeerId;
+    public readonly BatchId BatchId;
     public readonly BottleHalfLitre BottleHalfLitre;
 
-    public BottlingBeer(BeerId aggregateId, BottleHalfLitre bottleHalfLitre) : base(aggregateId)
+    public BottlingBeer(BatchId aggregateId, BottleHalfLitre bottleHalfLitre) : base(aggregateId)
     {
-        BeerId = aggregateId;
+        BatchId = aggregateId;
         BottleHalfLitre = bottleHalfLitre;
     }
 }

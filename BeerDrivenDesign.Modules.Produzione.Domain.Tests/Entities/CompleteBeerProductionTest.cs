@@ -21,12 +21,12 @@ public class CompleteBeerProductionTest : CommandSpecification<CompleteBeerProdu
     private readonly ProductionCompleteTime _productionCompleteTime = new(DateTime.UtcNow.AddDays(1));
     protected override IEnumerable<DomainEvent> Given()
     {
-        yield return new BeerProductionStarted(_beerId, _beerType, _batchId, _batchNumber, _quantity, _productionStartTime);
+        yield return new BeerProductionStarted(_batchId, _batchNumber, _beerId, _beerType, _quantity, _productionStartTime);
     }
 
     protected override CompleteBeerProduction When()
     {
-        return new CompleteBeerProduction(_beerId, _batchNumber, _quantity, _productionCompleteTime);
+        return new CompleteBeerProduction(_batchId, _batchNumber, _quantity, _productionCompleteTime);
     }
 
     protected override ICommandHandlerAsync<CompleteBeerProduction> OnHandler()
@@ -36,6 +36,6 @@ public class CompleteBeerProductionTest : CommandSpecification<CompleteBeerProdu
 
     protected override IEnumerable<DomainEvent> Expect()
     {
-        yield return new BeerProductionCompleted(_beerId, _batchNumber, _quantity, _productionCompleteTime);
+        yield return new BeerProductionCompleted(_batchId, _batchNumber, _beerId, _quantity, _productionCompleteTime);
     }
 }

@@ -1,30 +1,29 @@
 ﻿using BrewUp.Shared.Messages.CustomTypes;
 using Muflone.Messages.Events;
 
-namespace BrewUp.Shared.Messages.Events
+namespace BrewUp.Shared.Messages.Events;
+
+public class BeerProductionStarted : DomainEvent
 {
-    public class BeerProductionStarted : DomainEvent
+    public readonly BatchId BatchId;
+    public readonly BatchNumber BatchNumber;
+
+    public readonly BeerId BeerId;
+    public readonly BeerType BeerType;
+
+    public readonly Quantity Quantity;
+    public readonly ProductionStartTime ProductionStartTime;
+
+    public BeerProductionStarted(BatchId aggregateId, BatchNumber batchNumber, BeerId beerId, BeerType beerType,
+        Quantity quantity, ProductionStartTime productionStartTime) : base(aggregateId)
     {
-        public readonly BeerId BeerId;
-        public readonly BeerType BeerType;
+        BatchId = aggregateId;
+        BatchNumber = batchNumber;
 
-        public readonly BatchId BatchId;
-        public readonly BatchNumber BatchNumber;
+        BeerId = beerId;
+        BeerType = beerType;
 
-        public readonly Quantity Quantity;
-        public readonly ProductionStartTime ProductionStartTime;
-
-        public BeerProductionStarted(BeerId aggregateId, BeerType beerType, BatchId batchId, BatchNumber batchNumber,
-            Quantity quantity, ProductionStartTime productionStartTime) : base(aggregateId)
-        {
-            BeerId = aggregateId;
-            BeerType = beerType;
-
-            BatchId = batchId;
-            BatchNumber = batchNumber;
-
-            Quantity = quantity;
-            ProductionStartTime = productionStartTime;
-        }
+        Quantity = quantity;
+        ProductionStartTime = productionStartTime;
     }
 }

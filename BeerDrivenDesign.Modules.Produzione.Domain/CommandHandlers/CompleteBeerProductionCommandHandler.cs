@@ -19,14 +19,14 @@ public class CompleteBeerProductionCommandHandler : CommandHandlerAsync<Complete
 
         try
         {
-            var beer = await Repository.GetByIdAsync<Beer>(command.AggregateId.Value);
-            beer.CompleteBeerProduction(command.BatchNumber, command.Quantity, command.ProductionCompleteTime);
+            var order = await Repository.GetByIdAsync<Order>(command.AggregateId.Value);
+            order.CompleteBeerProduction(command.Quantity, command.ProductionCompleteTime);
 
-            await Repository.SaveAsync(beer, Guid.NewGuid());
+            await Repository.SaveAsync(order, Guid.NewGuid());
         }
         catch (Exception ex)
         {
-            CoreException.CreateAggregateException(command.BeerId, ex);
+            CoreException.CreateAggregateException(command.BatchId, ex);
         }
     }
 }

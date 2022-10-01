@@ -5,17 +5,16 @@ namespace BrewUp.Shared.Messages.Commands;
 
 public class CompleteBeerProduction : Command
 {
-    public readonly BeerId BeerId;
-
+    public readonly BatchId BatchId;
     public readonly BatchNumber BatchNumber;
 
     public readonly Quantity Quantity;
     public readonly ProductionCompleteTime ProductionCompleteTime;
 
-    public CompleteBeerProduction(BeerId aggregateId, BatchNumber batchNumber, Quantity quantity,
+    public CompleteBeerProduction(BatchId aggregateId, BatchNumber batchNumber, Quantity quantity,
         ProductionCompleteTime productionCompleteTime) : base(aggregateId)
     {
-        BeerId = aggregateId;
+        BatchId = aggregateId;
 
         BatchNumber = batchNumber;
 

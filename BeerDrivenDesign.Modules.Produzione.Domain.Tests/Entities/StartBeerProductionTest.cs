@@ -26,7 +26,7 @@ public class StartBeerProductionTest : CommandSpecification<StartBeerProduction>
 
     protected override StartBeerProduction When()
     {
-        return new StartBeerProduction(_beerId, _batchId, _batchNumber, _beerType, _quantity, _productionStartTime);
+        return new StartBeerProduction(_batchId, _batchNumber, _beerId, _beerType, _quantity, _productionStartTime);
     }
 
     protected override ICommandHandlerAsync<StartBeerProduction> OnHandler()
@@ -36,6 +36,7 @@ public class StartBeerProductionTest : CommandSpecification<StartBeerProduction>
 
     protected override IEnumerable<DomainEvent> Expect()
     {
-        yield return new BeerProductionStarted(_beerId, _beerType, _batchId, _batchNumber, _quantity, _productionStartTime);
+        yield return new BeerProductionStarted(_batchId, _batchNumber, _beerId, _beerType, _quantity,
+            _productionStartTime);
     }
 }

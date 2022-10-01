@@ -14,16 +14,19 @@ public sealed class BottlingBeerCommandHandler : CommandHandlerAsync<BottlingBee
 
     public override async Task HandleAsync(BottlingBeer command, CancellationToken cancellationToken = new())
     {
+        if (cancellationToken.IsCancellationRequested)
+            cancellationToken.ThrowIfCancellationRequested();
+
         try
         {
-            var beer = await Repository.GetByIdAsync<Beer>(command.BeerId.Value);
-            beer.BottlingBeer(command.BeerId, command.BottleHalfLitre);
+            var order = await Repository.GetByIdAsync<Order>(command.BatchId.Value);
+            order.BottlingBeer(command.BottleHalfLitre);
 
-            await Repository.SaveAsync(beer, Guid.NewGuid());
+            await Repository.SaveAsync(order, Guid.NewGuid());
         }
         catch (Exception ex)
         {
-            CoreException.CreateAggregateException(command.BeerId, ex);
+            CoreException.CreateAggregateException(command.BatchId, ex);
         }
     }
 }

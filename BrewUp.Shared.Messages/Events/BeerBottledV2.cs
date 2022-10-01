@@ -5,15 +5,15 @@ namespace BrewUp.Shared.Messages.Events;
 
 public sealed class BeerBottledV2 : DomainEvent
 {
-    public readonly BeerId BeerId;
+    public readonly BatchId BatchId;
     public readonly BottleHalfLitre BottleHalfLitre;
     public readonly Quantity Quantity;
     public readonly BeerLabel BeerLabel;
 
-    public BeerBottledV2(BeerId aggregateId, BottleHalfLitre bottleHalfLitre,
+    public BeerBottledV2(BatchId aggregateId, BottleHalfLitre bottleHalfLitre,
         Quantity quantity, BeerLabel beerLabel) : base(aggregateId)
     {
-        BeerId = aggregateId;
+        BatchId = aggregateId;
         BottleHalfLitre = bottleHalfLitre;
         Quantity = quantity;
         BeerLabel = beerLabel;

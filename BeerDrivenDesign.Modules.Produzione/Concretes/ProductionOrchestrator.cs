@@ -23,9 +23,9 @@ public sealed class ProductionOrchestrator : IProductionOrchestrator
     public async Task StartProductionAsync(PostProductionBeer postBrewBeer)
     {
         var command = new StartBeerProduction(
-            new BeerId(postBrewBeer.BeerId),
             new BatchId(Guid.NewGuid()),
             new BatchNumber(postBrewBeer.BatchNumber),
+            new BeerId(postBrewBeer.BeerId),
             new BeerType(postBrewBeer.BeerType),
             new Quantity(postBrewBeer.Quantity),
             new ProductionStartTime(DateTime.UtcNow)
@@ -38,7 +38,7 @@ public sealed class ProductionOrchestrator : IProductionOrchestrator
     {
         try
         {
-            var command = new CompleteBeerProduction(new BeerId(postBrewBeer.BeerId),
+            var command = new CompleteBeerProduction(new BatchId(postBrewBeer.BatchId),
                 new BatchNumber(postBrewBeer.BatchNumber),
                 new Quantity(postBrewBeer.Quantity),
                 new ProductionCompleteTime(postBrewBeer.ProductionTime));
