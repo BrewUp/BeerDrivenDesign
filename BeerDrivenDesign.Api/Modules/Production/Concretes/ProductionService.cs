@@ -1,0 +1,34 @@
+using BeerDrivenDesign.Api.Shared.Concretes;
+using BeerDrivenDesign.Modules.Produzione.Abstracts;
+using BeerDrivenDesign.Modules.Produzione.Shared.Dtos;
+using BeerDrivenDesign.ReadModel.Abstracts;
+using BeerDrivenDesign.ReadModel.Models;
+using Microsoft.Extensions.Logging;
+
+namespace BeerDrivenDesign.Modules.Produzione.Concretes;
+
+public sealed class ProductionService : ProductionBaseService, IProductionService
+{
+    public ProductionService(ILoggerFactory loggerFactory, IPersister persister)
+        : base(persister, loggerFactory)
+    {
+    }
+    public async Task<IEnumerable<ProductionOrderJson>> GetProductionOrdersAsync()
+    {
+        try
+        {
+            var productionOrders = await Persister.FindAsync<ProductionOrder>();
+            var ordersArray = productionOrders as ProductionOrder[] ??
+                              productionOrders.OrderByDescending(p => p.Id).ToArray();
+
+            return ordersArray.Any()
+                ? ordersArray.Select(p => p.ToJson())
+                : Enumerable.Empty<ProductionOrderJson>();
+        }
+        catch (Exception ex)
+        {
+            Logger.LogError(CommonServices.GetDefaultErrorTrace(ex));
+            throw;
+        }
+    }
+}
