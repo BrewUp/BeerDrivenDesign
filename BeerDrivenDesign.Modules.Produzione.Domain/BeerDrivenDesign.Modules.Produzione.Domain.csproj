@@ -12,7 +12,7 @@
     
     <ItemGroup>
         <PackageReference Include="Muflone" Version="6.1.0" />
-        <PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="6.0.0" />
+        <PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="6.0.1" />
         <PackageReference Include="Muflone.Transport.Azure" Version="6.1.1" />
     </ItemGroup>
     
