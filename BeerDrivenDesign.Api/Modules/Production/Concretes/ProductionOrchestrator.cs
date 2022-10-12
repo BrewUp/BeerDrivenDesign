@@ -1,8 +1,7 @@
-﻿using BeerDrivenDesign.Modules.Produzione.Abstracts;
-using BeerDrivenDesign.Modules.Produzione.Shared.Dtos;
+﻿using BeerDrivenDesign.Api.Modules.Production.Abstracts;
 using BeerDrivenDesign.ReadModel.Dtos;
 
-namespace BeerDrivenDesign.Modules.Produzione.Concretes;
+namespace BeerDrivenDesign.Api.Modules.Production.Concretes;
 
 public sealed class ProductionOrchestrator : IProductionOrchestrator
 {

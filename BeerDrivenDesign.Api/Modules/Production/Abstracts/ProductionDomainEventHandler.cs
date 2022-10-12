@@ -1,7 +1,6 @@
-﻿using Microsoft.Extensions.Logging;
-using Muflone.Messages.Events;
+﻿using Muflone.Messages.Events;
 
-namespace BeerDrivenDesign.Modules.Produzione.Abstracts;
+namespace BeerDrivenDesign.Api.Modules.Production.Abstracts;
 
 public abstract class ProductionDomainEventHandler<T> : IDomainEventHandlerAsync<T> where T : class, IDomainEvent
 {

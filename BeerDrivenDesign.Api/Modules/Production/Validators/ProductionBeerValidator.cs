@@ -1,8 +1,7 @@
-using BeerDrivenDesign.Modules.Produzione.Shared.Dtos;
 using BeerDrivenDesign.ReadModel.Dtos;
 using FluentValidation;
 
-namespace BeerDrivenDesign.Modules.Produzione.Shared.Validators;
+namespace BeerDrivenDesign.Api.Modules.Production.Validators;
 
 public class ProductionBeerValidator : AbstractValidator<PostProductionBeer>
 {

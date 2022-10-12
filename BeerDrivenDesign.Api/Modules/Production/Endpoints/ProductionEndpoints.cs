@@ -1,10 +1,9 @@
-﻿using BeerDrivenDesign.Api.Shared.Concretes;
-using BeerDrivenDesign.Modules.Produzione.Abstracts;
+﻿using BeerDrivenDesign.Api.Modules.Production.Abstracts;
+using BeerDrivenDesign.Api.Shared.Concretes;
 using BeerDrivenDesign.ReadModel.Dtos;
 using FluentValidation;
-using Microsoft.AspNetCore.Http;
 
-namespace BeerDrivenDesign.Modules.Produzione.Endpoints;
+namespace BeerDrivenDesign.Api.Modules.Production.Endpoints;
 
 public static class ProductionEndpoints
 {

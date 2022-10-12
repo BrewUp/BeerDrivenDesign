@@ -2,7 +2,7 @@
 using Muflone.Transport.Azure.Factories;
 using Muflone.Transport.Azure.Models;
 
-namespace BeerDrivenDesign.Modules.Produzione.Factories;
+namespace BeerDrivenDesign.Api.Modules.Production.Factories;
 
 public sealed class AzureQueueReferenceFactory : IAzureQueueReferenceFactory
 {

@@ -1,6 +1,6 @@
-﻿using BeerDrivenDesign.Modules.Produzione.Shared.Dtos;
+﻿using BeerDrivenDesign.ReadModel.Dtos;
 
-namespace BeerDrivenDesign.Modules.Produzione.Abstracts;
+namespace BeerDrivenDesign.Api.Modules.Production.Abstracts;
 
 public interface IProductionService
 {

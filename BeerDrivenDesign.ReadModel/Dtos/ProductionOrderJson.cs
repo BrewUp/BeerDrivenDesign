@@ -1,4 +1,4 @@
-﻿namespace BeerDrivenDesign.Modules.Produzione.Shared.Dtos;
+﻿namespace BeerDrivenDesign.ReadModel.Dtos;
 
 public class ProductionOrderJson
 {

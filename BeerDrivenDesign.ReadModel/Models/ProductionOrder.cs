@@ -1,5 +1,5 @@
-﻿using BeerDrivenDesign.Modules.Produzione.Shared.Dtos;
-using BeerDrivenDesign.ReadModel.Abstracts;
+﻿using BeerDrivenDesign.ReadModel.Abstracts;
+using BeerDrivenDesign.ReadModel.Dtos;
 
 namespace BeerDrivenDesign.ReadModel.Models;
 

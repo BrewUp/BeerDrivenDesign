@@ -1,11 +1,10 @@
-﻿using BeerDrivenDesign.Api.Shared.Concretes;
-using BeerDrivenDesign.Modules.Produzione.Abstracts;
-using BeerDrivenDesign.Modules.Produzione.Concretes;
-using BeerDrivenDesign.Modules.Produzione.Shared.Validators;
+﻿using BeerDrivenDesign.Api.Modules.Production.Abstracts;
+using BeerDrivenDesign.Api.Modules.Production.Concretes;
+using BeerDrivenDesign.Api.Modules.Production.Validators;
+using BeerDrivenDesign.Api.Shared.Concretes;
 using FluentValidation.AspNetCore;
-using Microsoft.Extensions.DependencyInjection;
 
-namespace BeerDrivenDesign.Modules.Produzione;
+namespace BeerDrivenDesign.Api.Modules.Production;
 
 public static class ProductionHelper
 {

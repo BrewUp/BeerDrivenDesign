@@ -1,8 +1,7 @@
-﻿using Microsoft.Extensions.DependencyInjection;
-using Muflone.Factories;
+﻿using Muflone.Factories;
 using Muflone.Messages.Commands;
 
-namespace BeerDrivenDesign.Modules.Produzione.Factories;
+namespace BeerDrivenDesign.Api.Modules.Production.Factories;
 
 public sealed class CommandHandlerFactoryAsync : ICommandHandlerFactoryAsync
 {

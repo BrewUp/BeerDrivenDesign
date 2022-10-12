@@ -1,9 +1,9 @@
+using BeerDrivenDesign.Api.Modules.Production.Abstracts;
+using BeerDrivenDesign.Api.Modules.Production.Concretes;
+using BeerDrivenDesign.Api.Modules.Production.Endpoints;
+using BeerDrivenDesign.Api.Modules.Production.Validators;
 using BeerDrivenDesign.Api.Shared.Concretes;
 using BeerDrivenDesign.Api.Shared.Configuration;
-using BeerDrivenDesign.Modules.Produzione.Abstracts;
-using BeerDrivenDesign.Modules.Produzione.Concretes;
-using BeerDrivenDesign.Modules.Produzione.Endpoints;
-using BeerDrivenDesign.Modules.Produzione.Shared.Validators;
 using BeerDrivenDesign.ReadModel.MongoDb;
 using FluentValidation.AspNetCore;
 using Microsoft.OpenApi.Models;

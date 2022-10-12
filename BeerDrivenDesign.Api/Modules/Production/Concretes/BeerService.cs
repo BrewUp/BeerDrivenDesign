@@ -1,10 +1,9 @@
-﻿using BeerDrivenDesign.Modules.Produzione.Abstracts;
+﻿using BeerDrivenDesign.Api.Modules.Production.Abstracts;
 using BeerDrivenDesign.ReadModel.Abstracts;
 using BeerDrivenDesign.ReadModel.Dtos;
 using BeerDrivenDesign.ReadModel.Models;
-using Microsoft.Extensions.Logging;
 
-namespace BeerDrivenDesign.Modules.Produzione.Concretes;
+namespace BeerDrivenDesign.Api.Modules.Production.Concretes;
 
 public sealed class BeerService : ProductionBaseService, IBeerService
 {

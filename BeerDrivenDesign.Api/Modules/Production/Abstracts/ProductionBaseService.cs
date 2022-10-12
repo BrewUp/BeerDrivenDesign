@@ -1,7 +1,6 @@
 using BeerDrivenDesign.ReadModel.Abstracts;
-using Microsoft.Extensions.Logging;
 
-namespace BeerDrivenDesign.Modules.Produzione.Abstracts;
+namespace BeerDrivenDesign.Api.Modules.Production.Abstracts;
 
 public abstract class ProductionBaseService
 {
