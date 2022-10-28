@@ -1,3 +1,6 @@
+using BeerDrivenDesign.Api.Modules.Magazzino.Abstracts;
+using BeerDrivenDesign.Api.Modules.Magazzino.Concretes;
+using BeerDrivenDesign.Api.Modules.Magazzino.Endpoints;
 using BeerDrivenDesign.Api.Modules.Production.Abstracts;
 using BeerDrivenDesign.Api.Modules.Production.Concretes;
 using BeerDrivenDesign.Api.Modules.Production.Endpoints;
@@ -57,6 +60,10 @@ builder.Services.AddScoped<IProductionService, ProductionService>();
 builder.Services.AddScoped<IBeerService, BeerService>();
 #endregion
 
+#region Magazzino
+builder.Services.AddScoped<IIngredientsService, IngredientsService>();
+#endregion
+
 var app = builder.Build();
 
 app.UseCors("CorsPolicy");
@@ -72,6 +79,16 @@ app.MapGet("v1/production/beers", ProductionEndpoints.HandleGetBeers)
     .WithTags("Production");
 app.MapGet("v1/production", ProductionEndpoints.HandleGetProductionOrders)
     .WithTags("Production");
+
+app.MapPut("v1/production/recipes", ProductionEndpoints.HandleCreateRecipe)
+    .WithTags("Production");
+#endregion
+
+#region Magazzino
+app.MapPost("v1/store/ingredients", MagazzinoEndpoints.HandlePostIngredient)
+    .WithTags("Store");
+app.MapPut("v1/store/ingredients/{ingredientId}", MagazzinoEndpoints.HandlePutInventory)
+    .WithTags("Store");
 #endregion
 
 // Configure the HTTP request pipeline.

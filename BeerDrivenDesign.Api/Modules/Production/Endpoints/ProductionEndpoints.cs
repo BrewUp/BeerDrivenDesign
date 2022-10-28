@@ -51,4 +51,18 @@ public static class ProductionEndpoints
 
         return Results.Ok(orders);
     }
+
+    public static async Task<IResult> HandleCreateRecipe(IProductionService productionService, RecipesJson recipe)
+    {
+        try
+        {
+            await productionService.CreateRecipesAsync(recipe);
+
+            return Results.Ok();
+        }
+        catch (Exception ex)
+        {
+            return Results.BadRequest(ex.Message);
+        }
+    }
 }

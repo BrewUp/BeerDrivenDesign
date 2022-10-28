@@ -30,4 +30,47 @@ public sealed class ProductionService : ProductionBaseService, IProductionServic
             throw;
         }
     }
+
+    public async Task CreateRecipesAsync(RecipesJson recipeToCreate)
+    {
+        try
+        {
+            var canCreateRecipe = true;
+            // Check ingredients
+            foreach (var ingredient in recipeToCreate.Ingredients)
+            {
+                var chkIngredient = await Persister.GetByIdAsync<Ingredients>(ingredient.IngredientId);
+                if (!string.IsNullOrEmpty(chkIngredient.Name))
+                    continue;
+
+                canCreateRecipe = false;
+                break;
+            }
+
+            if (!canCreateRecipe)
+                throw new Exception("Please Check your Ingredients!");
+            var recipe = Recipes.CreateRecipes(recipeToCreate.Description, recipeToCreate.Ingredients);
+            await Persister.InsertAsync(recipe);
+        }
+        catch (Exception ex)
+        {
+            Logger.LogError(CommonServices.GetDefaultErrorTrace(ex));
+            throw;
+        }
+    }
+
+    public async Task<RecipesJson> GetRecipeAsync(string beerId)
+    {
+        try
+        {
+            var recipe = await Persister.GetByIdAsync<Recipes>(beerId);
+
+            return recipe.ToJson();
+        }
+        catch (Exception ex)
+        {
+            Logger.LogError(CommonServices.GetDefaultErrorTrace(ex));
+            throw;
+        }
+    }
 }
